@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="border: 0; padding: 0; margin: 0;">
+    <ul class="nav">
+  <li><a href="./index.html">BookNest</a></li>
+  <li><a href="./addBook.html">Add Book</a></li>
+  <li><a href="./taken.html">Take Book</a></li>
+  <li><a href="./return.html">Return Book</a></li>
+  <li><a href="./delete.html">Delete Book</a></li>
+	</ul>
+  <script>
+    window.onload=function(){
+      if(sessionStorage.getItem("loggedIn")==="true"){
+        document.getElementById("booksSection").style.display="block";
+    } else{
+      document.getElementById("booksSection").style.display="none";
+    }
+  }
+  </script>
+</body>
+<div class="welcome">
+<h1>BookNest - Smart Library Portal</h1>
+<p>Please sign in to access books</p>
+
+<button onclick="location.href='signin.html'">Sign In</button>
+<button onclick="location.href='signup.html'">Sign Up</button>
+</div>
+<div class="books-section" id="booksSection">
+<h2>Featured Books</h2>
+<div class="book-container">
+<div class="book-card">
+<img src="./images/atomic.jpg">
+<p>Atomic Habits</p>
+</div>
+
+<div class="book-card">
+<img src="./images/harry.jpg">
+<p>Harry Potter</p>
+</div>
+
+<div class="book-card">
+<img src="./images/wings.jpg">
+<p>Wings of Fire</p>
+</div>
+
+<div class="book-card">
+<img src="./images/power.jpg">
+<p>The Power of Your Subconscious Mind</p>
+</div>
+
+<div class="book-card">
+<img src="./images/think.jpg">
+<p>Think and Grow Rich</p>
+</div>
+
+<div class="book-card">
+<img src="./images/the7.jpg">
+<p>The 7 Habits of Highly Effective People</p>
+</div>
+</div>
+</div>
+</html>

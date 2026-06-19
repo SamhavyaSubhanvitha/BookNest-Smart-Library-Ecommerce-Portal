@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Return Book</title>
+    <style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#d7e8f5;
+}
+
+.container{
+width:400px;
+padding:35px;
+border-radius:20px;
+background:rgba(255,255,255,0.6);
+box-shadow:0 5px 20px rgba(0,0,0,0.2);
+}
+
+h1{
+text-align:center;
+margin-bottom:25px;
+}
+
+label{
+display:block;
+margin-top:15px;
+font-weight:bold;
+}
+
+input{
+width:100%;
+padding:12px;
+margin-top:5px;
+border:none;
+border-radius:8px;
+outline:none;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:25px;
+border:none;
+border-radius:25px;
+background:#222;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#444;
+}
+
+.links{
+margin-top:20px;
+text-align:center;
+}
+
+.links a{
+display:block;
+text-decoration:none;
+color:#555;
+margin:8px 0;
+}
+
+.links a:hover{
+color:black;
+}
+
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>Return Book Page</h1>
+        <label for="name">Name:</label>
+        <input type="name" id="nameIp">
+        <br>
+        <div class="links">
+            <a href="addBook.html">Did not added book yet! go to addBook</a>
+            <br>
+            <a href="taken.html">Access the book</a>
+            <br>
+            <a href="delete.html">Delete the book</a>
+            <br>
+            <button onclick="submitForm()">Submit</button>  
+        </div>
+    </div>
+<script>
+    if(sessionStorage.getItem("loggedIn")!=="true"){
+        alert("Please sign in first");
+        window.location.href="signin.html";
+}
+    async function submitForm(){
+        console.log("called function");
+        const userName=document.getElementById("nameIp").value;
+        console.log(userName);
+        const sendBody = JSON.stringify({
+            "name":userName
+        });
+        console.log("the body is:",sendBody);
+
+        try{
+            const res = await fetch("http://localhost:3000/return",{
+                method:"POST",
+                headers:{
+                    "Content-type":"application/json"
+                },
+                body:sendBody
+            });
+            console.log("the response",res.status);
+            if(res.status==404){
+                alert("Book has been returned successfully");
+                return;
+            }
+            const responseData = await res.text();
+            alert(responseData);
+            if(responseData !== "this book is not available"){
+                window.location.href="index.html";
+            }
+        } catch (error) {
+            console.error(error);
+            alert("An error occurred. Please try again.");
+            return;
+        }
+    }
+</script>
+
+</body>
+</html>

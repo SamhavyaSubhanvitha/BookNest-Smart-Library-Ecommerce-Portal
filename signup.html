@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-up</title>
+    <style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#d7e8f5;
+}
+
+.container{
+width:400px;
+padding:35px;
+border-radius:20px;
+background:rgba(255,255,255,0.6);
+box-shadow:0 5px 20px rgba(0,0,0,0.2);
+}
+
+h1{
+text-align:center;
+margin-bottom:25px;
+}
+
+label{
+display:block;
+margin-top:15px;
+font-weight:bold;
+}
+
+input{
+width:100%;
+padding:12px;
+margin-top:5px;
+border:none;
+border-radius:8px;
+outline:none;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:25px;
+border:none;
+border-radius:25px;
+background:#222;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#444;
+}
+
+.links{
+margin-top:20px;
+text-align:center;
+}
+
+.links a{
+display:block;
+text-decoration:none;
+color:#555;
+margin:8px 0;
+}
+
+.links a:hover{
+color:black;
+}
+
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sign-up Page</h1>
+        <label for="email">Email:</label>
+        <input type="email" id="emailIp">
+        <label for="password">Password:</label>
+        <input type="password" id="passip">
+        <label for="passwordConfirm">Confirm Password:</label>
+        <input type="password" id="passipc">
+        <br>
+        <div class="links">
+            <a href="signin.html">Already have an account signin</a>
+            <button onclick="submitForm()">Sign-up</button> 
+        </div>
+    </div> 
+<script>
+    async function submitForm(){
+        console.log("called function");
+        const userEmail=document.getElementById("emailIp").value;
+        console.log(userEmail);
+        const userPassword=document.getElementById("passip").value;
+        console.log(userPassword);
+        const userConfirmPassword=document.getElementById("passipc").value;
+        console.log(userConfirmPassword);
+        if(userPassword!==userConfirmPassword){
+            alert("passwords do not match");
+            return;
+        }
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "email": userEmail,
+                "password": userPassword
+            })
+        };
+
+        try {
+            const res = await fetch("http://localhost:3000/signup", options);
+            console.log("the response", res);
+            
+            const data = await res.text();
+            alert(data); 
+        } catch (error) {
+            console.error("Error during signup fetch:", error);
+        }
+    }
+</script>
+
+</body>
+</html>
