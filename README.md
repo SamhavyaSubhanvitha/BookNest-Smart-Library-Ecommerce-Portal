@@ -1,67 +1,107 @@
-# BookNest - Smart Library Portal
+#  BookNest - Smart Library E-commerce Portal
 
-BookNest is a beginner-friendly full stack library management system developed as an internship project.
+BookNest is a full-stack web application that combines a Library Management System with an E-commerce Book Store. Users can browse books, add them to cart and wishlist, place orders, make payments, and manage their profiles.
 
-Users can create an account, sign in and manage books through a simple and interactive interface.
+### User Features
 
-## Features
+- User Signup
+- User Signin
+- Logout
+- Browse Books
+- Search Books
+- Add Books to Cart
+- Add Books to Wishlist
+- View Orders
+- User Profile
+- Payment System
+- OTP Verification
 
-- User Sign Up
-- User Sign In
-- Add Book
-- Take Book
-- Return Book
-- Delete Book
-- Featured Books Homepage
-- Protected Pages (Accessible only after login)
+### Library Features
+(Admin Only)
+- Add Books 
+- Borrow Books
+- Return Books
+- Delete Books
+- Book Availability Management
+
+### Dashboard Features
+
+- Total Users
+- Total Books
+- Total Orders
+
+---
 
 ## Technologies Used
 
-Frontend
-- HTML
-- CSS
+### Frontend
+
+- HTML5
+- CSS3
 - JavaScript
 
-Backend
+### Backend
+
 - Node.js
 - Express.js
 
-Database
+### Database
+
 - MongoDB
 
-## Project Structure
+---
 
-BookNest/
+##  Project Structure
 
-index.html
+```text
+BookNest
+|── server.js
+│── package.json
+│── package-lock.json
 
-signin.html
+├── fe/
+│   ├── index.html
+│   ├── signin.html
+│   ├── signup.html
+│   ├── shop.html
+│   ├── cart.html
+│   ├── wishlist.html
+│   ├── orders.html
+│   ├── profile.html
+│   ├── payment.html
+│   ├── otp.html
+│   ├── addBook.html
+│   ├── taken.html
+│   ├── return.html
+│   ├── delete.html
+│   ├── style.css
+│   ├── script.js
+│   └── images/
+```
 
-signup.html
+### Install Backend Dependencies
 
-addBook.html
+```bash
+npm install
+```
 
-taken.html
+### Start Backend Server
 
-return.html
+```bash
+node server.js
+```
 
-delete.html
+### Run Frontend
 
-style.css
+Open `index.html` using Live Server.
 
-images/
-
-auth.js
-
-package.json
-
-package-lock.json
+---
 
 ## Installation
 
 1. Clone the repository
 
-git clone https://github.com/SamhavyaSubhanvitha/booknest-smart-library-portal.git
+git clone https://github.com/SamhavyaSubhanvitha/BookNest-Smart-Library-Ecommerce-Portal.git
 
 2. Install dependencies
 
@@ -75,13 +115,16 @@ node server.js
 
 5. Open index.html
 
-## Future Improvements
+## Future Enhancements
 
-- Search books
-- User profile page
-- Book categories
-- Issue date and return date
-- Responsive design
+- Book Search Filter
+- User Authentication Security
+- Online Payment Gateway Integration
+- Order History Tracking
+- Responsive Mobile Design
+
+---
+
 
 ## Developed By
 
