@@ -11,9 +11,7 @@ app.use(cors());
 
 app.use(bodyParser.json());
 
-mongoose.connect(
-"mongodb://booknestadmin:Booknest123@ac-j4hmbla-shard-00-00.mtubmxw.mongodb.net:27017,ac-j4hmbla-shard-00-01.mtubmxw.mongodb.net:27017,ac-j4hmbla-shard-00-02.mtubmxw.mongodb.net:27017/library?ssl=true&replicaSet=atlas-5xg8ab-shard-0&authSource=admin&appName=BookNest"
-)
+mongoose.connect("mongodb+srv://<username>:<password>@cluster0.mongodb.net/?retryWrites=true&w=majority")
 
 .then(()=>{
 
