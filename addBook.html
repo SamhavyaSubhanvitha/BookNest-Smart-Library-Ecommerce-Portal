@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+body{
+backdrop-filter: blur(8px);
+}
+</style>
+</head>
+<body>
+    <nav class="navbar">
+
+<div class="logo">
+<i class="fa-solid fa-book-open"></i>
+<div>
+   <h2>BookNest</h2>
+
+<p>Smart Library Portal</p>
+
+</div>
+
+</div> 
+
+<ul class="nav-links">
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="shop.html">Shop</a></li>
+
+<li><a href="cart.html">Cart</a></li>
+
+<li><a href="wishlist.html">Wishlist</a></li>
+
+<li><a href="orders.html">Orders</a></li>
+
+<li class="dropdown">
+
+<a href="#">Library ▾</a>
+
+<ul class="dropdown-menu">
+
+<li><a href="addBook.html">Add Book</a></li>
+
+<li><a href="taken.html">Borrow Book</a></li>
+
+<li><a href="return.html">Return Book</a></li>
+
+<li><a href="delete.html">Delete Book</a></li>
+
+</ul>
+
+</li>
+
+<li><a href="profile.html">Profile</a></li>
+
+<li><a href="#" onclick="logout()">Logout</a></li>
+
+</ul>
+
+</nav>
+
+<div class="auth-container">
+    <div class="auth-card">
+<div class="form-card">
+<h1 class="page-title">Add New Book</h1>
+
+<div class="payment-box">
+<input type="text" placeholder="Title" id="title">
+
+<input type="text" placeholder="Author" id="author">
+
+<input type="text" placeholder="Category" id="category">
+
+<input type="text" placeholder="Description" id="description">
+
+<input type="file" placeholder="Image" id="image">
+
+<input type="number" placeholder="Price" id="price">
+
+<input type="number" placeholder="Copies" id="copies">
+
+
+<button onclick="addBook()">Add Book</button>
+
+
+</div>
+</div>
+</div>
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>

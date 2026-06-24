@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Shop</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+backdrop-filter:blur(8px);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<div class="logo">
+
+<div>
+
+<h2>BookNest</h2>
+
+<p>Discover • Shop • Read</p>
+
+</div>
+
+</div>
+
+<ul class="nav-links">
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="shop.html">Shop</a></li>
+
+<li><a href="cart.html">Cart</a></li>
+
+<li><a href="wishlist.html">Wishlist</a></li>
+
+<li><a href="orders.html">Orders</a></li>
+
+<li><a href="profile.html">Profile</a></li>
+
+<li><a href="#" onclick="logout()">Logout</a></li>
+
+</ul>
+
+</nav>
+
+
+<div class="shop-wrapper">
+
+<h1 class="page-title">
+
+Book Store
+
+</h1>
+
+
+<div class="shop-search">
+
+<input type="text"
+
+placeholder="Search books...">
+
+<button>
+
+Search
+
+</button>
+
+</div>
+
+
+<div id="shopContainer"
+
+class="shop-grid">
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+
+loadBooks();
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Return Book</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+body{
+backdrop-filter: blur(8px);
+}
+</style>
+</head>
+<body>
+    <nav class="navbar">
+
+<div class="logo">
+<i class="fa-solid fa-book-open"></i>
+<div>
+<h2>BookNest</h2>
+
+<p>Smart Library Portal</p>
+
+</div>
+
+</div>
+
+<ul class="nav-links">
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="shop.html">Shop</a></li>
+
+<li class="dropdown">
+
+<span class="library-btn">
+
+Library ▾
+
+</span>
+
+<ul class="dropdown-menu">
+
+<li><a href="taken.html">Borrow Book</a></li>
+
+<li><a href="return.html">Return Book</a></li>
+
+<li><a href="delete.html">Delete Book</a></li>
+
+</ul>
+
+</li>
+
+<li><a href="cart.html">Cart</a></li>
+
+<li><a href="wishlist.html">Wishlist</a></li>
+
+<li><a href="orders.html">Orders</a></li>
+
+<li><a href="profile.html">Profile</a></li>
+
+<li><a href="#" onclick="logout()">Logout</a></li>
+
+</ul>
+
+</nav>
+<div class="auth-container">
+<div class="auth-card">
+<div class="form-card">
+<h1 class="page-title">Return Book</h1>
+<div class="payment-box">
+<input type="text" placeholder="Title" id="title">
+
+<button onclick="returnBook()">Return Book</button>
+
+</div>
+<script src="script.js"></script>
+</div>
+</div>
+</div>
+
+</body>
+</html>

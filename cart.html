@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Cart</title>
+
+<link rel="stylesheet"
+
+href="style.css">
+
+<style>
+
+body{
+
+backdrop-filter:blur(8px);
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<div class="logo">
+
+<div>
+
+<h2>BookNest</h2>
+
+<p>Discover • Shop • Read</p>
+
+</div>
+
+</div>
+
+<ul class="nav-links">
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="shop.html">Shop</a></li>
+
+<li><a href="cart.html">Cart</a></li>
+
+<li><a href="wishlist.html">Wishlist</a></li>
+
+<li><a href="orders.html">Orders</a></li>
+
+<li><a href="profile.html">Profile</a></li>
+
+</ul>
+
+</nav>
+
+
+<div class="cart-wrapper">
+
+<h1 class="page-title">
+
+My Cart
+
+</h1>
+
+
+<div id="cartContainer"
+
+class="cart-grid">
+
+</div>
+
+
+<div class="checkout-box">
+
+<h2 id="totalAmount">
+
+Total : ₹0
+
+</h2>
+
+<button
+
+onclick="location.href='payment.html'">
+
+Proceed To Payment
+
+</button>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+
+loadCart();
+
+</script>
+
+</body>
+
+</html>
