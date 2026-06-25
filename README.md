@@ -15,6 +15,9 @@ BookNest is a full-stack web application that combines a Library Management Syst
 - User Profile
 - Payment System
 - OTP Verification
+- Admin Book Management
+- MongoDB Atlas Database
+- Responsive UI
 
 ### Library Features
 (Admin Only)
@@ -34,20 +37,14 @@ BookNest is a full-stack web application that combines a Library Management Syst
 
 ## Technologies Used
 
-### Frontend
-
-- HTML5
-- CSS3
+- HTML
+- CSS
 - JavaScript
-
-### Backend
-
 - Node.js
 - Express.js
-
-### Database
-
-- MongoDB
+- MongoDB Atlas
+- Netlify
+- Render
 
 ---
 
@@ -59,23 +56,23 @@ BookNest
 │── package.json
 │── package-lock.json
 
-├── fe/
-│   ├── index.html
-│   ├── signin.html
-│   ├── signup.html
-│   ├── shop.html
-│   ├── cart.html
-│   ├── wishlist.html
-│   ├── orders.html
-│   ├── profile.html
-│   ├── payment.html
-│   ├── otp.html
-│   ├── addBook.html
-│   ├── taken.html
-│   ├── return.html
-│   ├── delete.html
-│   ├── style.css
-│   ├── script.js
+
+├── index.html
+├── signin.html
+├── signup.html
+├── shop.html
+├── cart.html
+├── wishlist.html
+├── orders.html
+├── profile.html
+├── payment.html
+├── otp.html
+├── addBook.html
+├── taken.html
+├── return.html
+├── delete.html
+├── style.css
+├── script.js
 │   └── images/
 ```
 
@@ -124,7 +121,13 @@ node server.js
 - Responsive Mobile Design
 
 ---
+## Live Demo
 
+Frontend:
+https://booknest-smart-library.netlify.app/
+
+Backend:
+https://booknest-backend-nxnk.onrender.com/
 
 ## Developed By
 
