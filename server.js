@@ -11,7 +11,7 @@ app.use(cors());
 
 app.use(bodyParser.json());
 
-mongoose.connect("mongodb+srv://<username>:<password>@cluster0.mongodb.net/?retryWrites=true&w=majority")
+mongoose.connect(process.env.MONGO_URI)
 
 .then(()=>{
 
