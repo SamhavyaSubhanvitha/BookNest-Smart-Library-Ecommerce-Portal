@@ -168,7 +168,7 @@ container.innerHTML+=`
 
 <div class="book-card">
 
-<img src="${book.image}">
+<img src="./images/${book.image}">
 
 <h3>${book.title}</h3>
 
@@ -271,7 +271,7 @@ container.innerHTML+=`
 
 <div class="cart-card">
 
-<img src="${getImageName(book.image)}">
+<img src="./images/${getImageName(book.image)}">
 
 <h3>${book.title}</h3>
 
@@ -395,7 +395,7 @@ container.innerHTML+=`
 
 <div class="wishlist-card">
 
-<img src="${getImageName(book.image)}">
+<img src="./images/${getImageName(book.image)}">
 
 <h3>${book.title}</h3>
 
@@ -838,7 +838,7 @@ container.innerHTML+=`
 
 <div class="order-card">
 
-<img src="${order.image}">
+<img src="./images/${order.image}">
 
 <h3>${order.title}</h3>
 
