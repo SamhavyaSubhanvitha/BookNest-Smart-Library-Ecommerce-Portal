@@ -7,7 +7,7 @@ return path.split("\\").pop();
 }
 
 
-const API="http://localhost:3000";
+const API="https://booknest-backend-nxnk.onrender.com";
 
 function getImageName(path){
 
