@@ -191,6 +191,10 @@ timestamps:true
 
 const Payment = mongoose.model("Payment",paymentSchema);
 
+app.get("/", (req,res)=>{
+    res.send("BookNest Backend Running");
+});
+
 //=========signup====
 app.post("/signup",async(req,res)=>{
 
