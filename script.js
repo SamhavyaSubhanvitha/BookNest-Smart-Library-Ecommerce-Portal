@@ -162,6 +162,8 @@ const res=await fetch(`${API}/books`);
 
 const books=await res.json();
 
+console.log(books);
+    
 books.forEach(book=>{
 
 container.innerHTML+=`
