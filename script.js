@@ -148,18 +148,21 @@ console.log(err);
 
 }
 
-
-
 //================ LOGOUT ================
 
 function logout(){
 
-sessionStorage.clear();
+sessionStorage.removeItem("loggedIn");
+sessionStorage.removeItem("email");
+
+localStorage.removeItem("cart");
+localStorage.removeItem("wishlist");
+
+alert("Logged out successfully");
 
 window.location.href="signin.html";
 
 }
-
 
 //================ SHOP BOOKS ================
 
