@@ -78,6 +78,21 @@ console.log(err);
 
 }
 
+function checkLogin(){
+
+if(sessionStorage.getItem("loggedIn")!=="true"){
+
+alert("Please Sign In to continue.");
+
+window.location.href="signin.html";
+
+return false;
+
+}
+
+return true;
+
+}
 
 //================ SIGNIN ================
 
@@ -651,28 +666,21 @@ alert(data);
 
 async function payment(){
 
-const email=
+if(!checkLogin()) return;
 
-sessionStorage.getItem(
+const email=sessionStorage.getItem("email");
 
-"email"
+let cart=JSON.parse(localStorage.getItem("cart"))||[];
 
-);
+let amount=0;
 
-const amount=
+cart.forEach(book=>{
 
-document.getElementById(
+amount+=Number(book.price);
 
-"amount"
+});
 
-).value;
-
-
-await fetch(
-
-`${API}/payment`,
-
-{
+await fetch(`${API}/payment`,{
 
 method:"POST",
 
@@ -690,18 +698,9 @@ amount
 
 })
 
-}
+});
 
-);
-
-
-const otpRes=
-
-await fetch(
-
-`${API}/generateOtp`,
-
-{
+const otpRes=await fetch(`${API}/generateOtp`,{
 
 method:"POST",
 
@@ -717,14 +716,9 @@ email
 
 })
 
-}
+});
 
-);
-
-
-const otp=
-
-await otpRes.text();
+const otp=await otpRes.text();
 
 alert("Your OTP : "+otp);
 
@@ -732,6 +726,27 @@ window.location.href="otp.html";
 
 }
 
+//===========Load payment ==========
+
+function loadPaymentAmount(){
+
+const amountBox=document.getElementById("amountDisplay");
+
+if(!amountBox) return;
+
+let cart=JSON.parse(localStorage.getItem("cart"))||[];
+
+let total=0;
+
+cart.forEach(book=>{
+
+total+=Number(book.price);
+
+});
+
+amountBox.innerHTML="₹"+total;
+
+}
 
 //================ OTP ================
 
@@ -792,6 +807,8 @@ alert(data);
 
 
 if(data==="OTP Verified"){
+
+localStorage.removeItem("cart");
 
 window.location.href="success.html";
 
