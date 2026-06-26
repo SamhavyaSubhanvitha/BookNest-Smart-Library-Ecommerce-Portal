@@ -58,7 +58,11 @@ backdrop-filter: blur(8px);
 
 <input type="text" placeholder="CVV">
 
-<input id="amount" placeholder="Enter Amount">
+<h2>Total Amount</h2>
+
+<h1 id="amountDisplay">₹0</h1>
+
+<button onclick="payment()">Pay Now</button>
 
 <button onclick="payment()">
 
@@ -72,6 +76,9 @@ Pay Now
 
 </body>
 <script src="script.js"></script>
+<script>
+loadPaymentAmount();
+</script>
 </html>
 
 
