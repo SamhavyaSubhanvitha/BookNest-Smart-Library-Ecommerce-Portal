@@ -230,26 +230,15 @@ console.log(err);
 
 function addToCart(book){
 
-let cart=
+if(!checkLogin()) return;
 
-JSON.parse(
-
-localStorage.getItem("cart")
-
-)||[];
-
+let cart=JSON.parse(localStorage.getItem("cart"))||[];
 
 cart.push(book);
 
-localStorage.setItem(
+localStorage.setItem("cart",JSON.stringify(cart));
 
-"cart",
-
-JSON.stringify(cart)
-
-);
-
-alert("Added to cart");
+alert("Book added to Cart");
 
 }
 
@@ -358,29 +347,17 @@ loadCart();
 
 function addToWishlist(book){
 
-let wishlist=
+if(!checkLogin()) return;
 
-JSON.parse(
-
-localStorage.getItem("wishlist")
-
-)||[];
-
+let wishlist=JSON.parse(localStorage.getItem("wishlist"))||[];
 
 wishlist.push(book);
 
-localStorage.setItem(
+localStorage.setItem("wishlist",JSON.stringify(wishlist));
 
-"wishlist",
-
-JSON.stringify(wishlist)
-
-);
-
-alert("Added to wishlist");
+alert("Book added to Wishlist");
 
 }
-
 
 function loadWishlist(){
 
