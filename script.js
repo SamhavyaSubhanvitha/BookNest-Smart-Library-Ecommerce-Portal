@@ -216,9 +216,7 @@ container.innerHTML+=`
 📩 Message Author
 </button>
 
-<button onclick='readSample("${book.title}")'>
-📖 Read Sample
-</button>
+${getBookButton(book.title)}
 
 </div>
 
@@ -237,6 +235,36 @@ catch(err){
 console.log(err);
 
 }
+
+}
+
+//======== get book button =============
+function getBookButton(title){
+
+const previewBooks=[
+"Alice in Wonderland",
+"Pride and Prejudice",
+"The Time Machine",
+"The Adventures of Sherlock Holmes",
+"The Wonderful Wizard of Oz",
+"The Adventures of Tom Sawyer"
+];
+
+if(previewBooks.includes(title)){
+
+return `
+<button onclick='readSample("${title}")'>
+📖 Read Preview
+</button>
+`;
+
+}
+
+return `
+<button onclick='viewDetails("${title}")'>
+📚 View Details
+</button>
+`;
 
 }
 
@@ -342,6 +370,184 @@ function readSample(title){
     }
 
     window.open(`samples/${file}`, "_blank");
+}
+
+//===========close details============
+
+function closeDetails(){
+
+document.getElementById("detailsPopup").style.display="none";
+
+}
+
+function viewDetails(title){
+
+let details={
+
+"Atomic Habits":{
+
+author:"James Clear",
+
+genre:"Self Help",
+
+published:"2018",
+
+pages:"320",
+
+description:"Atomic Habits explains how tiny daily improvements lead to remarkable long-term results.",
+
+highlights:[
+"Small habits create big changes.",
+"Focus on systems instead of goals.",
+"Make habits obvious and easy.",
+"Consistency beats perfection."
+]
+
+},
+
+"Harry Potter":{
+
+author:"J.K. Rowling",
+
+genre:"Fantasy",
+
+published:"1997",
+
+pages:"309",
+
+description:"Harry Potter follows a young wizard discovering friendship, courage and magic.",
+
+highlights:[
+"Friendship",
+"Courage",
+"Magic School",
+"Adventure"
+]
+
+},
+
+"Wings of Fire":{
+
+author:"A.P.J. Abdul Kalam",
+
+genre:"Autobiography",
+
+published:"1999",
+
+pages:"180",
+
+description:"The inspiring autobiography of Dr. A.P.J. Abdul Kalam from childhood to becoming India's Missile Man.",
+
+highlights:[
+"Inspirational journey",
+"Dream big",
+"Science and innovation",
+"Leadership"
+]
+
+},
+
+"The Power of Your Subconscious Mind":{
+
+author:"Joseph Murphy",
+
+genre:"Self Help",
+
+published:"1963",
+
+pages:"312",
+
+description:"Explains how positive thinking and beliefs influence success and happiness.",
+
+highlights:[
+"Positive thinking",
+"Self belief",
+"Mental strength",
+"Confidence"
+]
+
+},
+
+"Think and Grow Rich":{
+
+author:"Napoleon Hill",
+
+genre:"Personal Finance",
+
+published:"1937",
+
+pages:"238",
+
+description:"Classic personal development book about mindset and success principles.",
+
+highlights:[
+"Goal setting",
+"Persistence",
+"Success mindset",
+"Decision making"
+]
+
+},
+
+"The 7 Habits of Highly Effective People":{
+
+author:"Stephen Covey",
+
+genre:"Leadership",
+
+published:"1989",
+
+pages:"381",
+
+description:"One of the world's most influential books on personal and professional effectiveness.",
+
+highlights:[
+"Be proactive",
+"Begin with the end in mind",
+"Put first things first",
+"Think win-win"
+]
+
+}
+
+};
+
+let book=details[title];
+
+if(!book){
+
+alert("Details not available.");
+
+return;
+
+}
+
+document.getElementById("popupTitle").innerHTML=title;
+
+document.getElementById("popupBody").innerHTML=`
+
+<p><b>Author:</b> ${book.author}</p>
+
+<p><b>Genre:</b> ${book.genre}</p>
+
+<p><b>Published:</b> ${book.published}</p>
+
+<p><b>Pages:</b> ${book.pages}</p>
+
+<p><b>Description:</b> ${book.description}</p>
+
+<h3>Key Takeaways</h3>
+
+<ul>
+
+${book.highlights.map(item=>`<li>${item}</li>`).join("")}
+
+</ul>
+
+`;
+
+document.getElementById("detailsPopup").style.display="flex";
+
 }
 
 //================ CART ================
