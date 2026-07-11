@@ -848,6 +848,10 @@ cursor:pointer;
 
 width:260px;
 
+min-height:560px;
+
+height:auto;
+
 padding:20px;
 
 background:rgba(45,25,25,.9);
@@ -888,31 +892,57 @@ margin:8px 0;
 
 display:flex;
 
+flex-direction:column;
+
 justify-content:center;
 
 gap:10px;
 
-margin-top:20px;
+margin-top:15px;
 
 }
 
-.btn-group button{
+.btn-row{
 
-padding:12px 18px;
+display:flex;
+
+justify-content:space-between;
+
+gap:10px;
+
+margin-top:5px;
+
+}
+
+.btn-row button{
+
+flex:1;
+
+padding:10px;
 
 border:none;
 
-border-radius:30px;
+border-radius:8px;
 
-background:#d4a762;
+background:#e0b15a;
 
-font-weight:700;
+color:#2d1b16;
+
+font-weight:bold;
 
 cursor:pointer;
 
+transition:.3s;
+
 }
 
+.btn-row button:hover{
 
+background:#f3c46d;
+
+transform:translateY(-2px);
+
+}
 
 /* ================= CART ================= */
 
