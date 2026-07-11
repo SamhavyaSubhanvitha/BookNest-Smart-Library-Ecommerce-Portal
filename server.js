@@ -195,6 +195,89 @@ app.get("/", (req,res)=>{
     res.send("BookNest Backend Running");
 });
 
+//================ AUTHOR MESSAGES ==================
+
+const messageSchema = new mongoose.Schema({
+
+userEmail:String,
+
+bookId:String,
+
+bookTitle:String,
+
+author:String,
+
+message:String,
+
+createdAt:{
+
+type:Date,
+
+default:Date.now
+
+}
+
+},
+{
+timestamps:true
+});
+
+const Message = mongoose.model("Message",messageSchema);
+
+//================ SPAM FILTER ==================
+
+function isSpam(message){
+
+message = message.toLowerCase();
+
+const spamKeywords = [
+
+"winner",
+"congratulation",
+"claim prize",
+"earn money",
+"lottery",
+"click here",
+"free recharge",
+"cash prize",
+"free gift"
+
+];
+
+if(message.includes("http://") || message.includes("https://")){
+
+return true;
+
+}
+
+if(message.includes("www.")){
+
+return true;
+
+}
+
+const phoneRegex=/\b\d{10}\b/;
+
+if(phoneRegex.test(message)){
+
+return true;
+
+}
+
+for(const word of spamKeywords){
+
+if(message.includes(word)){
+
+return true;
+
+}
+
+}
+
+return false;
+
+}
+
 //=========signup====
 app.post("/signup",async(req,res)=>{
 
@@ -451,6 +534,98 @@ res.status(500).send(error);
 
 });
 
+
+//================ AUTHOR MESSAGE ==================
+
+app.post("/authorMessage",async(req,res)=>{
+
+try{
+
+const{
+
+userEmail,
+
+bookId,
+
+bookTitle,
+
+author,
+
+message
+
+}=req.body;
+
+if(isSpam(message)){
+
+return res.status(400).json({
+
+success:false,
+
+message:"Spam message detected"
+
+});
+
+}
+
+const newMessage=new Message({
+
+userEmail,
+
+bookId,
+
+bookTitle,
+
+author,
+
+message
+
+});
+
+await newMessage.save();
+
+res.json({
+
+success:true,
+
+message:"Message sent successfully"
+
+});
+
+}
+
+catch(error){
+
+console.log(error);
+
+res.status(500).json({
+
+success:false
+
+});
+
+}
+
+});
+
+//================= Get Messages ==========
+
+app.get("/messages",async(req,res)=>{
+
+const messages=await Message.find();
+
+res.json(messages);
+
+});
+
+//===================Delete messages===========
+
+app.delete("/messages/:id",async(req,res)=>{
+
+await Message.findByIdAndDelete(req.params.id);
+
+res.send("Deleted");
+
+});
 
 //================ ORDERS ==================
 
