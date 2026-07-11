@@ -198,13 +198,19 @@ container.innerHTML+=`
 
 <div class="btn-group">
 
+<div class="btn-row">
+
 <button onclick='addToCart(${JSON.stringify(book)})'>
-Add To Cart
+🛒 Add To Cart
 </button>
 
 <button onclick='addToWishlist(${JSON.stringify(book)})'>
 ❤ Wishlist
 </button>
+
+</div>
+
+<div class="btn-row">
 
 <button onclick='openMessagePopup(${JSON.stringify(book)})'>
 📩 Message Author
@@ -213,6 +219,8 @@ Add To Cart
 <button onclick='readSample("${book.title}")'>
 📖 Read Sample
 </button>
+
+</div>
 
 </div>
 
