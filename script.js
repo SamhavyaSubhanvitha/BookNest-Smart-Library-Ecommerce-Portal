@@ -199,15 +199,19 @@ container.innerHTML+=`
 <div class="btn-group">
 
 <button onclick='addToCart(${JSON.stringify(book)})'>
-
 Add To Cart
-
 </button>
 
 <button onclick='addToWishlist(${JSON.stringify(book)})'>
-
 ❤ Wishlist
+</button>
 
+<button onclick='openMessagePopup(${JSON.stringify(book)})'>
+📩 Message Author
+</button>
+
+<button onclick='readSample("${book.title}")'>
+📖 Read Sample
 </button>
 
 </div>
@@ -228,6 +232,87 @@ console.log(err);
 
 }
 
+//========message pop up =================
+
+let selectedBook=null;
+
+function openMessagePopup(book){
+
+selectedBook=book;
+
+document.getElementById("messagePopup").style.display="flex";
+
+}
+
+function closePopup(){
+
+document.getElementById("messagePopup").style.display="none";
+
+document.getElementById("authorMessage").value="";
+
+}
+
+//==========Author msg =============
+
+async function sendAuthorMessage(){
+
+const message=document.getElementById("authorMessage").value;
+
+const userEmail=localStorage.getItem("email");
+
+const res=await fetch(`${API}/authorMessage`,{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":"application/json"
+
+},
+
+body:JSON.stringify({
+
+userEmail:userEmail,
+
+bookId:selectedBook._id,
+
+bookTitle:selectedBook.title,
+
+author:selectedBook.author,
+
+message:message
+
+})
+
+});
+
+const data=await res.json();
+
+if(data.success){
+
+alert(" Message Sent Successfully");
+
+closePopup();
+
+}
+
+else{
+
+alert(" Spam Message Detected");
+
+}
+
+}
+
+//==============Read sample ===========
+
+function readSample(title){
+
+const fileName=title.replaceAll(" ","_");
+
+window.open(`samples/${fileName}.pdf`);
+
+}
 
 //================ CART ================
 
