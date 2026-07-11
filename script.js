@@ -382,6 +382,8 @@ document.getElementById("detailsPopup").style.display="none";
 
 function viewDetails(title){
 
+console.log("Clicked title:", title);
+
 let details={
 
 "Atomic Habits":{
@@ -512,29 +514,32 @@ highlights:[
 
 };
 
-let book=details[title];
+const normalizedTitle = title.trim().toLowerCase();
+
+const book = Object.keys(details).find(
+    key => key.trim().toLowerCase() === normalizedTitle
+);
 
 if(!book){
-
-alert("Details not available.");
-
-return;
-
+    alert("Details not available.");
+    return;
 }
+
+const bookDetails = details[book];
 
 document.getElementById("popupTitle").innerHTML=title;
 
 document.getElementById("popupBody").innerHTML=`
 
-<p><b>Author:</b> ${book.author}</p>
+<p><b>Author:</b> ${bookDetails.author}</p>
 
-<p><b>Genre:</b> ${book.genre}</p>
+<p><b>Genre:</b> ${bookDetails.genre}</p>
 
-<p><b>Published:</b> ${book.published}</p>
+<p><b>Published:</b> ${bookDetails.published}</p>
 
-<p><b>Pages:</b> ${book.pages}</p>
+<p><b>Pages:</b> ${bookDetails.pages}</p>
 
-<p><b>Description:</b> ${book.description}</p>
+<p><b>Description:</b> ${bookDetails.description}</p>
 
 <h3>Key Takeaways</h3>
 
