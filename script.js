@@ -523,6 +523,27 @@ if(!book){
     return;
 }
 
+document.getElementById("popupTitle").innerHTML = title;
+
+document.getElementById("popupBody").innerHTML = `
+<p><b>Author:</b> ${book.author}</p>
+<p><b>Genre:</b> ${book.genre}</p>
+<p><b>Published:</b> ${book.published}</p>
+<p><b>Pages:</b> ${book.pages}</p>
+
+<h3>Description</h3>
+<p>${book.description}</p>
+
+<h3>Key Takeaways</h3>
+<ul>
+${book.highlights.map(item => `<li>${item}</li>`).join("")}
+</ul>
+`;
+
+document.getElementById("detailsPopup").style.display = "flex";
+
+}
+
 
 //================ CART ================
 
