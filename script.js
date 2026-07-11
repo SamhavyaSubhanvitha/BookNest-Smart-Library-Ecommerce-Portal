@@ -516,40 +516,23 @@ highlights:[
 
 const normalizedTitle = title.trim().toLowerCase();
 
-const book = Object.keys(details).find(
+const matchedKey = Object.keys(details).find(
     key => key.trim().toLowerCase() === normalizedTitle
 );
 
-if(!book){
+if (!matchedKey) {
+    console.log("Received title:", "[" + title + "]");
+    console.log("Available titles:", Object.keys(details));
     alert("Details not available.");
     return;
 }
 
-const bookDetails = details[book];
+const book = details[matchedKey];
 
-document.getElementById("popupTitle").innerHTML=title;
 
-document.getElementById("popupBody").innerHTML=`
 
-<p><b>Author:</b> ${bookDetails.author}</p>
 
-<p><b>Genre:</b> ${bookDetails.genre}</p>
 
-<p><b>Published:</b> ${bookDetails.published}</p>
-
-<p><b>Pages:</b> ${bookDetails.pages}</p>
-
-<p><b>Description:</b> ${bookDetails.description}</p>
-
-<h3>Key Takeaways</h3>
-
-<ul>
-
-${book.highlights.map(item=>`<li>${item}</li>`).join("")}
-
-</ul>
-
-`;
 
 document.getElementById("detailsPopup").style.display="flex";
 
