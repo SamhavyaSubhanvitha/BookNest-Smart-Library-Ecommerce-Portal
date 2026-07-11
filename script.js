@@ -534,13 +534,13 @@ const book = details[matchedKey];
 document.getElementById("popupTitle").innerHTML = matchedKey;
 
 document.getElementById("popupBody").innerHTML = `
-<p><b>👤 Author:</b> ${book.author}</p>
+<p><b>👤 Author:</b> ${bookDetails.author}</p>
 
-<p><b>📚 Genre:</b> ${book.genre}</p>
+<p><b>📚 Genre:</b> ${bookDetails.genre}</p>
 
-<p><b>📅 Published:</b> ${book.published}</p>
+<p><b>📅 Published:</b> ${bookDetails.published}</p>
 
-<p><b>📄 Pages:</b> ${book.pages}</p>
+<p><b>📄 Pages:</b> ${bookDetails.pages}</p>
 
 <hr>
 
