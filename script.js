@@ -316,10 +316,32 @@ alert(" Spam Message Detected");
 
 function readSample(title){
 
-const fileName=title.replaceAll(" ","_");
+    let file = "";
 
-window.open(`samples/${fileName}.pdf`);
+    switch(title){
 
+        case "Alice in Wonderland":
+            file = "Alice_in_Wonderland.pdf";
+            break;
+
+        case "The Adventures of Sherlock Holmes":
+            file = "advs.pdf";
+            break;
+
+        case "Pride and Prejudice":
+            file = "pride-and-prejudice.pdf";
+            break;
+
+        case "The Time Machine":
+            file = "the-time-machine.pdf";
+            break;
+
+        default:
+            alert("Preview not available for this book.");
+            return;
+    }
+
+    window.open(`samples/${file}`, "_blank");
 }
 
 //================ CART ================
