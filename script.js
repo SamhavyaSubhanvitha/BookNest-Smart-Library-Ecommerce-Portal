@@ -380,6 +380,8 @@ document.getElementById("detailsPopup").style.display="none";
 
 }
 
+//==========View Details=========
+
 function viewDetails(title){
 
 console.log("Clicked title:", title);
@@ -529,14 +531,34 @@ if (!matchedKey) {
 
 const book = details[matchedKey];
 
+document.getElementById("popupTitle").innerHTML = matchedKey;
 
+document.getElementById("popupBody").innerHTML = `
+<p><b>👤 Author:</b> ${book.author}</p>
 
+<p><b>📚 Genre:</b> ${book.genre}</p>
 
+<p><b>📅 Published:</b> ${book.published}</p>
 
+<p><b>📄 Pages:</b> ${book.pages}</p>
 
-document.getElementById("detailsPopup").style.display="flex";
+<hr>
 
-}
+<h3>📖 Description</h3>
+
+<p>${book.description}</p>
+
+<hr>
+
+<h3>⭐ Key Takeaways</h3>
+
+<ul>
+${book.highlights.map(item => `<li>${item}</li>`).join("")}
+</ul>
+`;
+
+document.getElementById("detailsPopup").style.display = "flex";
+
 
 //================ CART ================
 
