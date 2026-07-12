@@ -767,6 +767,52 @@ loadCart();
 
 }
 
+//================Experience================
+async function submitExperience(){
+
+const message=document
+.getElementById("experienceMessage")
+.value;
+
+if(message.length<20){
+
+alert("Please write at least 20 characters.");
+
+return;
+
+}
+
+const res=await fetch(`${API}/experience`,{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+userEmail:sessionStorage.getItem("email"),
+
+bookTitle:selectedBook,
+
+message
+
+})
+
+});
+
+const data=await res.json();
+
+if(data.success){
+
+alert("Thank you for sharing your experience!");
+
+closeExperience();
+
+}
+
+}
 
 //================ WISHLIST ================
 
