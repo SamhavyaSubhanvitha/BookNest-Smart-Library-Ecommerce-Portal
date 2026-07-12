@@ -543,12 +543,12 @@ ${book.highlights.map(item => `<li>${item}</li>`).join("")}
 document.getElementById("detailsPopup").style.display = "flex";
 
 }
-
-let selectedBook="";
+//============== User Experience=======
+let selectedExperienceBook = "";
 
 function shareExperience(title){
 
-selectedBook=title;
+selectedExperienceBook=title;
 
 document.getElementById("experiencePopup").style.display="flex";
 
@@ -794,7 +794,7 @@ body:JSON.stringify({
 
 userEmail:sessionStorage.getItem("email"),
 
-bookTitle:selectedBook,
+bookTitle:selectedExperienceBook,
 
 message
 
