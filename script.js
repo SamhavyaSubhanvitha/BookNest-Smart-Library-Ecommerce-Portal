@@ -264,6 +264,9 @@ return `
 <button onclick='viewDetails("${title}")'>
 📚 View Details
 </button>
+<button onclick='openReaderWall("${title}")'>
+📖 Reader Wall
+</button>
 `;
 
 }
@@ -811,6 +814,79 @@ alert("Thank you for sharing your experience!");
 closeExperience();
 
 }
+
+}
+
+//============== Reader Wall=============
+async function openReaderWall(title){
+
+document.getElementById("readerWallPopup").style.display="flex";
+
+document.getElementById("readerWallTitle").innerHTML=
+
+title+" - Reader Wall";
+
+const res=await fetch(`${API}/experience/${title}`);
+
+const experiences=await res.json();
+
+const container=document.getElementById("readerWallContainer");
+
+container.innerHTML="";
+
+if(experiences.length===0){
+
+container.innerHTML=`
+
+<h3>
+
+No reader experiences yet.
+
+Be the first!
+
+</h3>
+
+`;
+
+return;
+
+}
+
+experiences.forEach(item=>{
+
+container.innerHTML+=`
+
+<div class="reader-card">
+
+<h4>
+
+Verified Buyer
+
+</h4>
+
+<p>
+
+${item.message}
+
+</p>
+
+<small>
+
+${item.userEmail}
+
+</small>
+
+</div>
+
+`;
+
+});
+
+}
+
+function closeReaderWall(){
+
+document.getElementById("readerWallPopup").style.display="none";
 
 }
 
