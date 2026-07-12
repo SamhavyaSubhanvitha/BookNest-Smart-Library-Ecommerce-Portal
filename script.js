@@ -824,31 +824,41 @@ if(!container) return;
 
 container.innerHTML="";
 
-const res=await fetch(`${API}/readerwall`);
+const res=await fetch(`${API}/experience`);
 
-const posts=await res.json();
+const experiences=await res.json();
 
-posts.forEach(post=>{
+experiences.forEach(exp=>{
 
 container.innerHTML+=`
 
-<div class="wall-card">
+<div class="order-card">
 
-<h2>${post.bookTitle}</h2>
+<h2>${exp.bookTitle}</h2>
 
 <p>
 
 ⭐ Verified Buyer
 
-${post.userEmail}
+</p>
+
+<p>
+
+${exp.message}
 
 </p>
 
 <p>
 
-"${post.message}"
+❤️ ${exp.likes} Likes
 
 </p>
+
+<small>
+
+${new Date(exp.createdAt).toLocaleDateString()}
+
+</small>
 
 </div>
 
