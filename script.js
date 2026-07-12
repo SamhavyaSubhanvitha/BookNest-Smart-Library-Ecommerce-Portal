@@ -544,6 +544,34 @@ document.getElementById("detailsPopup").style.display = "flex";
 
 }
 
+let selectedBook="";
+
+function shareExperience(title){
+
+selectedBook=title;
+
+document.getElementById("experiencePopup").style.display="flex";
+
+}
+function closeExperience(){
+
+document.getElementById("experiencePopup").style.display="none";
+
+}
+
+const textarea=document.getElementById("experienceMessage");
+
+if(textarea){
+
+textarea.addEventListener("input",()=>{
+
+document.getElementById("count").innerHTML=
+
+textarea.value.length;
+
+});
+
+}
 
 //================ CART ================
 
