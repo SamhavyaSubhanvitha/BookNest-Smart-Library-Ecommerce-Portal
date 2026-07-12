@@ -245,6 +245,25 @@ timestamps:true
 
 const Message = mongoose.model("Message",messageSchema);
 
+//==========User Experience ===================
+
+const experienceSchema = new mongoose.Schema({
+
+userEmail:String,
+
+bookTitle:String,
+
+message:String,
+
+createdAt:{
+type:Date,
+default:Date.now
+}
+
+});
+
+const Experience = mongoose.model("Experience", experienceSchema);
+
 //================ SPAM FILTER ==================
 
 function isSpam(message){
