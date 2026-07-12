@@ -264,9 +264,6 @@ return `
 <button onclick='viewDetails("${title}")'>
 📚 View Details
 </button>
-<button onclick='openReaderWall("${title}")'>
-📖 Reader Wall
-</button>
 `;
 
 }
