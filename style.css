@@ -1380,6 +1380,39 @@ font-size:16px;
 
 }
 
+.reader-card{
+
+background:white;
+
+padding:15px;
+
+margin:15px 0;
+
+border-radius:10px;
+
+box-shadow:0 0 10px rgba(0,0,0,.15);
+
+text-align:left;
+
+}
+
+.reader-card h4{
+
+color:green;
+
+margin-bottom:10px;
+
+}
+
+#readerWallContainer{
+
+max-height:420px;
+
+overflow-y:auto;
+
+padding:10px;
+
+}
 
 
 
