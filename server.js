@@ -574,6 +574,38 @@ res.status(500).send(error);
 
 });
 
+//============== User Experience===================
+app.post("/experience", async(req,res)=>{
+
+try{
+
+const experience = new Experience({
+
+userEmail:req.body.userEmail,
+
+bookTitle:req.body.bookTitle,
+
+message:req.body.message
+
+});
+
+await experience.save();
+
+res.send({
+
+success:true
+
+});
+
+}
+
+catch(error){
+
+res.status(500).send(error);
+
+}
+
+});
 
 //================ AUTHOR MESSAGE ==================
 
