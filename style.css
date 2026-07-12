@@ -1414,6 +1414,48 @@ padding:10px;
 
 }
 
+.wall-card{
+
+width:70%;
+
+margin:25px auto;
+
+background:white;
+
+padding:25px;
+
+border-radius:15px;
+
+box-shadow:0 0 12px rgba(0,0,0,.2);
+
+}
+
+.wall-card h2{
+
+color:#7b3f00;
+
+margin-bottom:10px;
+
+}
+
+.wall-card p{
+
+font-size:18px;
+
+line-height:30px;
+
+}
+
+.wall-text{
+
+text-align:center;
+
+font-size:20px;
+
+margin-bottom:30px;
+
+}
+
 
 
 
