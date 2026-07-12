@@ -572,6 +572,84 @@ textarea.value.length;
 });
 
 }
+//=========== Search Books==========
+
+async function searchBooks(){
+
+const keyword = document
+.getElementById("searchInput")
+.value
+.toLowerCase();
+
+const res = await fetch(`${API}/books`);
+
+const books = await res.json();
+
+const filtered = books.filter(book =>
+
+book.title.toLowerCase().includes(keyword) ||
+
+book.author.toLowerCase().includes(keyword)
+
+);
+
+const container = document.getElementById("shopContainer");
+
+container.innerHTML="";
+
+filtered.forEach(book=>{
+
+container.innerHTML+=`
+
+<div class="book-card">
+
+<img src="./images/${book.image}">
+
+<h3>${book.title}</h3>
+
+<p>${book.author}</p>
+
+<p>₹${book.price}</p>
+
+<div class="btn-group">
+
+<div class="btn-row">
+
+<button onclick='addToCart(${JSON.stringify(book)})'>
+🛒 Add To Cart
+</button>
+
+<button onclick='addToWishlist(${JSON.stringify(book)})'>
+❤ Wishlist
+</button>
+
+</div>
+
+<div class="btn-row">
+
+<button onclick='openMessagePopup(${JSON.stringify(book)})'>
+📩 Message Author
+</button>
+
+${getBookButton(book.title)}
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+if(filtered.length===0){
+
+container.innerHTML="<h2>No books found.</h2>";
+
+}
+
+}
 
 //================ CART ================
 
@@ -1132,6 +1210,30 @@ alert(data);
 
 if(data==="OTP Verified"){
 
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+const totalAmount = cart.reduce((sum, book) => sum + Number(book.price), 0);
+
+await fetch(`${API}/orders`,{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+userEmail: sessionStorage.getItem("email"),
+
+books: cart,
+
+totalAmount: totalAmount
+
+})
+
+});
+
 localStorage.removeItem("cart");
 
 window.location.href="success.html";
@@ -1143,55 +1245,55 @@ window.location.href="success.html";
 
 //================ ORDERS ================
 
-function loadOrders(){
+async function loadOrders(){
 
-let container=document.getElementById("ordersContainer");
+const container=document.getElementById("ordersContainer");
 
-if(!container)return;
+if(!container) return;
 
 container.innerHTML="";
 
-let orders=[
+const email=sessionStorage.getItem("email");
 
-{
+try{
 
-title:"Atomic Habits",
+const res=await fetch(`${API}/orders/${email}`);
 
-image:"atomic.jpg",
+const orders=await res.json();
 
-date:"24 June 2026"
+if(orders.length===0){
 
-},
+container.innerHTML="<h2>No Orders Yet</h2>";
 
-{
-
-title:"Harry Potter",
-
-image:"harry.jpg",
-
-date:"24 June 2026"
+return;
 
 }
 
-];
-
 orders.forEach(order=>{
+
+order.books.forEach(book=>{
 
 container.innerHTML+=`
 
 <div class="order-card">
 
-<img src="./images/${order.image}">
+<img src="./images/${book.image}">
 
-<h3>${order.title}</h3>
+<h3>${book.title}</h3>
 
-<p>Order Date : ${order.date}</p>
+<p>Order Date :
+${new Date(order.createdAt).toLocaleDateString()}</p>
 
+<p>Status :
 <span class="status delivered">
-
 Delivered
+</span></p>
 
-</span>
+<button onclick="shareExperience('${book.title}')">
+
+⭐ Share Experience
+
+</button>
 
 </div>
 
@@ -1199,8 +1301,17 @@ Delivered
 
 });
 
+});
+
 }
 
+catch(err){
+
+console.log(err);
+
+}
+
+}
 
 //================ DASHBOARD ================
 
