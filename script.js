@@ -817,6 +817,50 @@ closeExperience();
 
 }
 
+//=============== Reader Wall============
+
+async function loadReaderWall(){
+
+const container=document.getElementById("readerWallContainer");
+
+if(!container) return;
+
+container.innerHTML="";
+
+const res=await fetch(`${API}/readerwall`);
+
+const posts=await res.json();
+
+posts.forEach(post=>{
+
+container.innerHTML+=`
+
+<div class="wall-card">
+
+<h2>${post.bookTitle}</h2>
+
+<p>
+
+⭐ Verified Buyer
+
+${post.userEmail}
+
+</p>
+
+<p>
+
+"${post.message}"
+
+</p>
+
+</div>
+
+`;
+
+});
+
+}
+
 //============== Reader Wall=============
 async function openReaderWall(title){
 
