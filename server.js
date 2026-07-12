@@ -624,6 +624,26 @@ res.json(data);
 
 });
 
+app.get("/experience", async(req,res)=>{
+
+try{
+
+const experiences = await Experience.find()
+
+.sort({createdAt:-1});
+
+res.json(experiences);
+
+}
+
+catch(error){
+
+res.status(500).send(error);
+
+}
+
+});
+
 //================ AUTHOR MESSAGE ==================
 
 app.post("/authorMessage",async(req,res)=>{
