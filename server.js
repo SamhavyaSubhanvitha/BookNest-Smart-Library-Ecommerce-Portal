@@ -696,6 +696,27 @@ res.status(500).send(error);
 
 });
 
+app.get("/orders/:email", async(req,res)=>{
+
+try{
+
+const orders = await Order.find({
+
+userEmail:req.params.email
+
+});
+
+res.send(orders);
+
+}
+
+catch(err){
+
+res.status(500).send(err);
+
+}
+
+});
 
 //================ DASHBOARD ==================
 
