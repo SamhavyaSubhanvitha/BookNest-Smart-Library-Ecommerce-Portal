@@ -195,6 +195,27 @@ app.get("/", (req,res)=>{
     res.send("BookNest Backend Running");
 });
 
+//================ READER WALL ==================
+
+const readerWallSchema = new mongoose.Schema({
+
+    userEmail:String,
+
+    bookTitle:String,
+
+    message:String,
+
+    verifiedBuyer:Boolean,
+
+    createdAt:{
+        type:Date,
+        default:Date.now
+    }
+
+});
+
+const ReaderWall = mongoose.model("ReaderWall",readerWallSchema);
+
 //================ AUTHOR MESSAGES ==================
 
 const messageSchema = new mongoose.Schema({
@@ -863,6 +884,107 @@ req.params.id
 );
 
 res.send("Removed");
+
+});
+
+//================ READER WALL ==================
+
+app.post("/readerWall", async(req,res)=>{
+
+try{
+
+const{
+
+userEmail,
+
+bookTitle,
+
+message
+
+}=req.body;
+
+
+// Character limit
+
+if(message.length>250){
+
+return res.status(400).send({
+
+success:false,
+
+message:"Maximum 250 characters."
+
+});
+
+}
+
+app.get("/readerWall/:bookTitle",async(req,res)=>{
+
+const data=await ReaderWall.find({
+
+bookTitle:req.params.bookTitle
+
+});
+
+res.send(data);
+
+});
+
+// Check purchase
+
+const order=await Order.findOne({
+
+userEmail:userEmail
+
+});
+
+
+if(!order){
+
+return res.status(403).send({
+
+success:false,
+
+message:"Only verified buyers can post."
+
+});
+
+}
+
+
+// Save
+
+const post=new ReaderWall({
+
+userEmail,
+
+bookTitle,
+
+message,
+
+verifiedBuyer:true
+
+});
+
+await post.save();
+
+res.send({
+
+success:true,
+
+message:"Experience shared successfully."
+
+});
+
+}
+
+catch(err){
+
+console.log(err);
+
+res.status(500).send(err);
+
+}
 
 });
 
