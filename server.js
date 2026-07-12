@@ -601,9 +601,26 @@ success:true
 
 catch(error){
 
-res.status(500).send(error);
+res.status(500).json({
+
+success:false
+});
 
 }
+
+});
+
+//
+
+app.get("/experience/:bookTitle",async(req,res)=>{
+
+const data=await Experience.find({
+
+bookTitle:req.params.bookTitle
+
+});
+
+res.json(data);
 
 });
 
