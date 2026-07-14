@@ -690,6 +690,26 @@ message
 
 }=req.body;
 
+const purchased = await Order.findOne({
+
+userEmail,
+
+"books.title": bookTitle
+
+});
+
+if(!purchased){
+
+return res.status(403).json({
+
+success:false,
+
+message:"Purchase the book before messaging the author."
+
+});
+
+}
+
 if(isSpam(message)){
 
 return res.status(400).json({
@@ -749,6 +769,24 @@ status
 });
 
 await newMessage.save();
+
+if(status === "Reader Wall"){
+
+const wallPost = new ReaderWall({
+
+userEmail,
+
+bookTitle,
+
+message,
+
+verifiedBuyer:true
+
+});
+
+await wallPost.save();
+
+}
 
 res.json({
 
