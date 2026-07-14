@@ -249,11 +249,13 @@ const Message = mongoose.model("Message",messageSchema);
 
 //================ AUTHORS ==================
 
-const authorSchema = new mongoose.Schema({
+const authorSchema=new mongoose.Schema({
 
 name:String,
 
 email:String,
+
+password:String,
 
 bookTitles:[String],
 
@@ -822,6 +824,90 @@ res.json(messages);
 
 });
 
+//================ AUTHOR DASHBOARD ==================
+
+app.get("/author/messages/:email", async(req,res)=>{
+
+try{
+
+const author = await Author.findOne({
+
+email:req.params.email
+
+});
+
+if(!author){
+
+return res.status(404).send([]);
+
+}
+
+const messages = await Message.find({
+
+author:author.name
+
+}).sort({createdAt:-1});
+
+res.send(messages);
+
+}
+
+catch(error){
+
+console.log(error);
+
+res.status(500).send(error);
+
+}
+
+});
+
+//================ AUTHOR LOGIN ==================
+
+app.post("/authorLogin",async(req,res)=>{
+
+try{
+
+const author=await Author.findOne({
+
+email:req.body.email,
+
+password:req.body.password
+
+});
+
+if(!author){
+
+return res.status(404).json({
+
+success:false,
+
+message:"Invalid Email or Password"
+
+});
+
+}
+
+res.json({
+
+success:true,
+
+author:author
+
+});
+
+}
+
+catch(error){
+
+console.log(error);
+
+res.status(500).send(error);
+
+}
+
+});
+
 //===================Delete messages===========
 
 app.delete("/messages/:id",async(req,res)=>{
@@ -1111,6 +1197,28 @@ res.send("Author Added");
 catch(error){
 
 console.log(error);
+
+res.status(500).send(error);
+
+}
+
+});
+
+//================ ADD AUTHOR ==================
+
+app.post("/authors",async(req,res)=>{
+
+try{
+
+const author=new Author(req.body);
+
+await author.save();
+
+res.send("Author Added");
+
+}
+
+catch(error){
 
 res.status(500).send(error);
 
