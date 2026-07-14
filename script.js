@@ -17,7 +17,6 @@ return path.split("\\").pop();
 
 }
 
-
 //================ SIGNUP ================
 
 async function signup(){
@@ -143,6 +142,54 @@ window.location.href="index.html";
 catch(err){
 
 console.log(err);
+
+}
+
+}
+
+//================ AUTHOR LOGIN ==================
+
+async function authorLogin(){
+
+const email=document.getElementById("authorEmail").value;
+
+const password=document.getElementById("authorPassword").value;
+
+const res=await fetch(`${API}/authorLogin`,{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+email,
+password
+
+})
+
+});
+
+const data=await res.json();
+
+if(data.success){
+
+sessionStorage.setItem("authorLoggedIn","true");
+
+sessionStorage.setItem("authorEmail",email);
+
+sessionStorage.setItem("authorName",data.author.name);
+
+alert("Welcome "+data.author.name);
+
+window.location.href="authorDashboard.html";
+
+}
+else{
+
+alert(data.message);
 
 }
 
