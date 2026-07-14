@@ -212,9 +212,7 @@ container.innerHTML+=`
 
 <div class="btn-row">
 
-<button onclick='openMessagePopup(${JSON.stringify(book)})'>
-📩 Message Author
-</button>
+${getMessageButton(book)}
 
 ${getBookButton(book.title)}
 
@@ -263,6 +261,32 @@ return `
 return `
 <button onclick='viewDetails("${title}")'>
 📚 View Details
+</button>
+`;
+
+}
+
+function getMessageButton(book){
+
+const orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+const purchased = orders.some(order =>
+    order.title === book.title
+);
+
+if(purchased){
+
+return `
+<button onclick='openMessagePopup(${JSON.stringify(book)})'>
+📩 Message Author
+</button>
+`;
+
+}
+
+return `
+<button disabled style="background:gray;cursor:not-allowed;">
+Buy to Message Author
 </button>
 `;
 
@@ -340,7 +364,7 @@ alert("Author contact is unavailable. Your message is stored safely.");
 
 else{
 
-alert("The author is no longer alive. Your message has been shared on the Readers' Wall.");
+alert("The author is no longer alive. Your message has been shared on the Readers Wall.");
 
 }
 
@@ -1472,10 +1496,12 @@ ${new Date(order.createdAt).toLocaleDateString()}</p>
 Delivered
 </span></p>
 
+<button onclick='openPurchasedMessagePopup(${JSON.stringify(book)})'>
+📩 Message Author
+</button>
+
 <button onclick="shareExperience('${book.title}')">
-
-⭐ Share Experience
-
+Reader Wall
 </button>
 
 </div>
@@ -1493,6 +1519,14 @@ catch(err){
 console.log(err);
 
 }
+
+}
+
+function openPurchasedMessagePopup(book){
+
+selectedBook = book;
+
+document.getElementById("messagePopup").style.display="flex";
 
 }
 
