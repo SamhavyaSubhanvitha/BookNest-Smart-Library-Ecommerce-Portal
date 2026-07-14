@@ -1040,6 +1040,46 @@ res.status(500).send("Error");
 
 });
 
+//================ ADD AUTHOR ==================
+
+app.post("/addAuthor", async(req,res)=>{
+
+try{
+
+const author = new Author({
+
+name:req.body.name,
+
+email:req.body.email,
+
+bookTitles:req.body.bookTitles,
+
+isAlive:req.body.isAlive,
+
+contactAvailable:req.body.contactAvailable,
+
+photo:req.body.photo,
+
+bio:req.body.bio
+
+});
+
+await author.save();
+
+res.send("Author Added");
+
+}
+
+catch(error){
+
+console.log(error);
+
+res.status(500).send(error);
+
+}
+
+});
+
 //================ READER WALL ==================
 
 app.post("/readerWall", async(req,res)=>{
