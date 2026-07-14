@@ -1040,20 +1040,6 @@ res.status(500).send("Error");
 
 });
 
-app.delete("/wishlist/:id",
-
-async(req,res)=>{
-
-await Wishlist.findByIdAndDelete(
-
-req.params.id
-
-);
-
-res.send("Removed");
-
-});
-
 //================ READER WALL ==================
 
 app.post("/readerWall", async(req,res)=>{
@@ -1061,40 +1047,85 @@ app.post("/readerWall", async(req,res)=>{
 try{
 
 const{
-
 userEmail,
-
 bookTitle,
-
 message
-
 }=req.body;
 
 // Character limit
-
-if(message.length>250){
+if(message.length > 250){
 
 return res.status(400).send({
-
 success:false,
-
 message:"Maximum 250 characters."
-
 });
 
 }
+
+// Check whether the user purchased this book
+const order = await Order.findOne({
+userEmail:userEmail,
+"books.title":bookTitle
+});
+
+if(!order){
+
+return res.status(403).send({
+success:false,
+message:"Only verified buyers can post."
+});
+
 }
+
+// Save post
+const post = new ReaderWall({
+
+userEmail,
+bookTitle,
+message,
+verifiedBuyer:true
+
+});
+
+await post.save();
+
+res.send({
+success:true,
+message:"Experience shared successfully."
+});
+
 }
 
-app.get("/readerWall/:bookTitle",async(req,res)=>{
+catch(err){
 
-const data=await ReaderWall.find({
+console.log(err);
 
+res.status(500).send(err);
+
+}
+
+});
+
+
+//================ GET READER WALL ==================
+
+app.get("/readerWall/:bookTitle", async(req,res)=>{
+
+try{
+
+const data = await ReaderWall.find({
 bookTitle:req.params.bookTitle
-
 });
 
 res.send(data);
+
+}
+
+catch(err){
+
+res.status(500).send(err);
+
+}
 
 });
 
@@ -1118,7 +1149,6 @@ message:"Only verified buyers can post."
 });
 
 }
-
 
 // Save
 
