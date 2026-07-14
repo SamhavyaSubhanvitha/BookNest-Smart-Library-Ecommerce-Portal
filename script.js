@@ -326,15 +326,25 @@ const data=await res.json();
 
 if(data.success){
 
-alert(" Message Sent Successfully");
+if(data.status==="Delivered"){
 
-closePopup();
+alert("Your message has been sent to the author's page.");
+
+}
+
+else if(data.status==="Pending"){
+
+alert("Author contact is unavailable. Your message is stored safely.");
 
 }
 
 else{
 
-alert(" Spam Message Detected");
+alert("The author is no longer alive. Your message has been shared on the Readers' Wall.");
+
+}
+
+closePopup();
 
 }
 
