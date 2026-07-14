@@ -318,7 +318,7 @@ async function sendAuthorMessage(){
 
 const message=document.getElementById("authorMessage").value;
 
-const userEmail=localStorage.getItem("email");
+const userEmail=sessionStorage.getItem("email");
 
 const res=await fetch(`${API}/authorMessage`,{
 
@@ -346,29 +346,34 @@ message:message
 
 });
 
-const data=await res.json();
+const data = await res.json();
 
 if(data.success){
 
-if(data.status==="Delivered"){
+    if(data.status==="Delivered"){
 
-alert("Your message has been sent to the author's page.");
+        alert("Your message has been delivered to the author.");
+
+    }
+
+    else if(data.status==="Pending"){
+
+        alert("Author contact is unavailable. Your message is saved and will be delivered later.");
+
+    }
+
+    else if(data.status==="Reader Wall"){
+
+        alert("This author is no longer alive. Your message has been posted to the Reader Wall.");
+
+    }
+
+    closePopup();
 
 }
-
-else if(data.status==="Pending"){
-
-alert("Author contact is unavailable. Your message is stored safely.");
-
-}
-
 else{
 
-alert("The author is no longer alive. Your message has been shared on the Readers Wall.");
-
-}
-
-closePopup();
+    alert(data.message);
 
 }
 
