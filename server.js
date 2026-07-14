@@ -1129,63 +1129,6 @@ res.status(500).send(err);
 
 });
 
-// Check purchase
-
-const order=await Order.findOne({
-
-userEmail:userEmail
-
-});
-
-
-if(!order){
-
-return res.status(403).send({
-
-success:false,
-
-message:"Only verified buyers can post."
-
-});
-
-}
-
-// Save
-
-const post=new ReaderWall({
-
-userEmail,
-
-bookTitle,
-
-message,
-
-verifiedBuyer:true
-
-});
-
-await post.save();
-
-res.send({
-
-success:true,
-
-message:"Experience shared successfully."
-
-});
-
-}
-
-catch(err){
-
-console.log(err);
-
-res.status(500).send(err);
-
-}
-
-});
-
 app.listen(PORT,()=>{
 
 console.log(`Server running on ${PORT}`);
