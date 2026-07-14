@@ -1596,7 +1596,7 @@ ${new Date(order.createdAt).toLocaleDateString()}</p>
 Delivered
 </span></p>
 
-<button onclick='openPurchasedMessagePopup(${JSON.stringify(book)})'>
+<button onclick='openMessagePopup(${JSON.stringify(book)})'>
 📩 Message Author
 </button>
 
