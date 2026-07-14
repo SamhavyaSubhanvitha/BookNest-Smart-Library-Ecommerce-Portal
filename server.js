@@ -230,6 +230,8 @@ author:String,
 
 message:String,
 
+status:String,
+
 createdAt:{
 
 type:Date,
@@ -244,6 +246,30 @@ timestamps:true
 });
 
 const Message = mongoose.model("Message",messageSchema);
+
+//================ AUTHORS ==================
+
+const authorSchema = new mongoose.Schema({
+
+name:String,
+
+email:String,
+
+bookTitles:[String],
+
+isAlive:Boolean,
+
+contactAvailable:Boolean,
+
+photo:String,
+
+bio:String
+
+},{
+timestamps:true
+});
+
+const Author = mongoose.model("Author",authorSchema);
 
 //==========User Experience ===================
 
@@ -676,6 +702,36 @@ message:"Spam message detected"
 
 }
 
+const authorData=await Author.findOne({
+
+bookTitles:bookTitle
+
+});
+
+let status="Pending";
+
+if(authorData){
+
+if(authorData.isAlive && authorData.contactAvailable){
+
+status="Delivered";
+
+}
+
+else if(authorData.isAlive){
+
+status="Pending";
+
+}
+
+else{
+
+status="Reader Wall";
+
+}
+
+}
+
 const newMessage=new Message({
 
 userEmail,
@@ -686,7 +742,9 @@ bookTitle,
 
 author,
 
-message
+message,
+
+status
 
 });
 
@@ -696,7 +754,7 @@ res.json({
 
 success:true,
 
-message:"Message sent successfully"
+status
 
 });
 
@@ -1012,7 +1070,6 @@ message
 
 }=req.body;
 
-
 // Character limit
 
 if(message.length>250){
@@ -1025,6 +1082,8 @@ message:"Maximum 250 characters."
 
 });
 
+}
+}
 }
 
 app.get("/readerWall/:bookTitle",async(req,res)=>{
