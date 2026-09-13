@@ -1552,7 +1552,7 @@ window.location.href="success.html";
 
 //================ ORDERS ================
 
-//================ ORDERS ================
+let orderBookList = [];
 
 async function loadOrders(){
 
@@ -1563,6 +1563,8 @@ async function loadOrders(){
     container.innerHTML = "";
 
     const email = sessionStorage.getItem("email");
+
+    orderBookList = [];
 
     try{
 
@@ -1578,14 +1580,32 @@ async function loadOrders(){
 
         }
 
+
         orders.forEach(order => {
 
             order.books.forEach(book => {
 
-                // Format order date
+                // Store book so buttons can access it safely
+                const bookIndex = orderBookList.length;
+
+                orderBookList.push(book);
+
+
+                //================ ORDER DATE ================
+
                 let orderDate = "Date unavailable";
 
-                if(order.createdAt){
+                if(order.orderDate){
+
+                    orderDate = new Date(order.orderDate)
+                        .toLocaleDateString("en-IN", {
+                            day: "2-digit",
+                            month: "2-digit",
+                            year: "numeric"
+                        });
+
+                }
+                else if(order.createdAt){
 
                     orderDate = new Date(order.createdAt)
                         .toLocaleDateString("en-IN", {
@@ -1596,6 +1616,9 @@ async function loadOrders(){
 
                 }
 
+
+                //================ ORDER CARD ================
+
                 container.innerHTML += `
 
                 <div class="order-card">
@@ -1604,9 +1627,11 @@ async function loadOrders(){
 
                     <h3>${book.title}</h3>
 
+
                     <p class="order-date">
                         Order Date : ${orderDate}
                     </p>
+
 
                     <p>
                         Status :
@@ -1615,18 +1640,26 @@ async function loadOrders(){
                         </span>
                     </p>
 
+
                     <div class="order-buttons">
 
                         <button
+                            type="button"
                             class="order-btn message-btn"
-                            onclick='openMessagePopup(${JSON.stringify(book)})'>
+                            onclick="openPurchasedMessagePopup(${bookIndex})">
+
                             📩 Message Author
+
                         </button>
 
+
                         <button
+                            type="button"
                             class="order-btn reader-btn"
-                            onclick='shareExperience(${JSON.stringify(book.title)})'>
+                            onclick="openReaderWallExperience(${bookIndex})">
+
                             📖 Reader Wall
+
                         </button>
 
                     </div>
@@ -1646,6 +1679,48 @@ async function loadOrders(){
         console.log("Error loading orders:", err);
 
     }
+
+}
+//================ PURCHASED MESSAGE BUTTON ================
+
+function openPurchasedMessagePopup(index){
+
+    const book = orderBookList[index];
+
+    if(!book){
+
+        console.log("Book not found");
+
+        return;
+
+    }
+
+    selectedBook = book;
+
+    const popup = document.getElementById("messagePopup");
+
+    if(popup){
+
+        popup.style.display = "flex";
+
+    }
+
+}
+//================ READER WALL BUTTON ================
+
+function openReaderWallExperience(index){
+
+    const book = orderBookList[index];
+
+    if(!book){
+
+        console.log("Book not found");
+
+        return;
+
+    }
+
+    shareExperience(book.title);
 
 }
 
