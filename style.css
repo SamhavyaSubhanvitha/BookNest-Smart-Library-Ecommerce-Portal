@@ -1359,11 +1359,11 @@ font-weight:600;
 /* ================= MAIN READER SECTION ================= */
 
 .reader-section {
-    background: #f7f5f2;
+    background: transparent;
 
-    min-height: 600px;
+    min-height: 500px;
 
-    padding: 60px 6% 80px;
+    padding: 45px 6% 70px;
 }
 
 
