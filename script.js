@@ -1552,81 +1552,100 @@ window.location.href="success.html";
 
 //================ ORDERS ================
 
+//================ ORDERS ================
+
 async function loadOrders(){
 
-const container=document.getElementById("ordersContainer");
+    const container = document.getElementById("ordersContainer");
 
-if(!container) return;
+    if(!container) return;
 
-container.innerHTML="";
+    container.innerHTML = "";
 
-const email=sessionStorage.getItem("email");
+    const email = sessionStorage.getItem("email");
 
-try{
+    try{
 
-const res=await fetch(`${API}/orders/${email}`);
+        const res = await fetch(`${API}/orders/${email}`);
 
-const orders=await res.json();
+        const orders = await res.json();
 
-if(orders.length===0){
+        if(orders.length === 0){
 
-container.innerHTML="<h2>No Orders Yet</h2>";
+            container.innerHTML = "<h2>No Orders Yet</h2>";
 
-return;
+            return;
 
-}
+        }
 
-orders.forEach(order=>{
+        orders.forEach(order => {
 
-order.books.forEach(book=>{
+            order.books.forEach(book => {
 
-container.innerHTML+=`
+                // Format order date
+                let orderDate = "Date unavailable";
 
-<div class="order-card">
+                if(order.createdAt){
 
-<img src="./images/${book.image}">
+                    orderDate = new Date(order.createdAt)
+                        .toLocaleDateString("en-IN", {
+                            day: "2-digit",
+                            month: "2-digit",
+                            year: "numeric"
+                        });
 
-<h3>${book.title}</h3>
+                }
 
-<p>Order Date :
-${new Date(order.createdAt).toLocaleDateString()}</p>
+                container.innerHTML += `
 
-<p>Status :
-<span class="status delivered">
-Delivered
-</span></p>
+                <div class="order-card">
 
-<button onclick='openMessagePopup(${JSON.stringify(book)})'>
-📩 Message Author
-</button>
+                    <img src="./images/${getImageName(book.image)}">
 
-<button onclick="shareExperience('${book.title}')">
-Reader Wall
-</button>
+                    <h3>${book.title}</h3>
 
-</div>
+                    <p class="order-date">
+                        Order Date : ${orderDate}
+                    </p>
 
-`;
+                    <p>
+                        Status :
+                        <span class="status delivered">
+                            Delivered
+                        </span>
+                    </p>
 
-});
+                    <div class="order-buttons">
 
-});
+                        <button
+                            class="order-btn message-btn"
+                            onclick='openMessagePopup(${JSON.stringify(book)})'>
+                            📩 Message Author
+                        </button>
 
-}
+                        <button
+                            class="order-btn reader-btn"
+                            onclick='shareExperience(${JSON.stringify(book.title)})'>
+                            📖 Reader Wall
+                        </button>
 
-catch(err){
+                    </div>
 
-console.log(err);
+                </div>
 
-}
+                `;
 
-}
+            });
 
-function openPurchasedMessagePopup(book){
+        });
 
-selectedBook = book;
+    }
 
-document.getElementById("messagePopup").style.display="flex";
+    catch(err){
+
+        console.log("Error loading orders:", err);
+
+    }
 
 }
 
