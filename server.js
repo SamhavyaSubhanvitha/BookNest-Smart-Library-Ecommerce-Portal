@@ -930,7 +930,7 @@ books:req.body.books,
 
 totalAmount:req.body.totalAmount,
 
-status:"Pending"
+status:"Delivered"
 
 });
 
