@@ -1634,11 +1634,15 @@ async function loadOrders(){
 
 
                     <p>
-                        Status :
-                        <span class="status delivered">
-                            Delivered
-                        </span>
-                    </p>
+    Status :
+
+    <span class="status ${order.status === "Delivered" ? "delivered" : "pending"}">
+
+        ${order.status || "Pending"}
+
+    </span>
+
+</p>
 
 
                     <div class="order-buttons">
