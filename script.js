@@ -958,40 +958,106 @@ if(!container) return;
 
 container.innerHTML="";
 
-const res=await fetch(`${API}/experience`);
+try{
 
-const experiences=await res.json();
+const [experienceRes, readerWallRes] = await Promise.all([
 
-experiences.forEach(exp=>{
+fetch(`${API}/experience`),
+
+fetch(`${API}/readerWall`)
+
+]);
+
+const experiences = await experienceRes.json();
+
+const readerWallPosts = await readerWallRes.json();
+
+
+// Convert normal experiences into Reader Wall format
+const normalPosts = experiences.map(exp => ({
+
+bookTitle: exp.bookTitle,
+
+message: exp.message,
+
+createdAt: exp.createdAt,
+
+verifiedBuyer: true
+
+}));
+
+
+// Convert deceased-author messages into Reader Wall format
+const deceasedAuthorPosts = readerWallPosts.map(post => ({
+
+bookTitle: post.bookTitle,
+
+message: post.message,
+
+createdAt: post.createdAt,
+
+verifiedBuyer: post.verifiedBuyer
+
+}));
+
+
+// Combine both
+const allPosts = [
+
+...normalPosts,
+
+...deceasedAuthorPosts
+
+];
+
+
+// Newest posts first
+allPosts.sort((a,b) =>
+
+new Date(b.createdAt) - new Date(a.createdAt)
+
+);
+
+
+if(allPosts.length === 0){
+
+container.innerHTML=`
+
+<h3>
+
+No reader experiences yet.
+
+Be the first!
+
+</h3>
+
+`;
+
+return;
+
+}
+
+
+allPosts.forEach(post=>{
 
 container.innerHTML+=`
 
 <div class="order-card">
 
-<h2>${exp.bookTitle}</h2>
+<h2>
+${post.bookTitle}
+</h2>
 
 <p>
-
 ⭐ Verified Buyer
-
 </p>
 
 <p>
-
-${exp.message}
-
-</p>
-
-<p>
-
-❤️ ${exp.likes} Likes
-
+${post.message}
 </p>
 
 <small>
-
-${new Date(exp.createdAt).toLocaleDateString()}
-
+${new Date(post.createdAt).toLocaleDateString()}
 </small>
 
 </div>
@@ -999,6 +1065,22 @@ ${new Date(exp.createdAt).toLocaleDateString()}
 `;
 
 });
+
+}
+
+catch(err){
+
+console.log("Error loading Reader Wall:",err);
+
+container.innerHTML=`
+
+<h3>
+Unable to load reader experiences.
+</h3>
+
+`;
+
+}
 
 }
 
