@@ -1,79 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reader Wall</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-body{
-backdrop-filter: blur(8px);
-}
-</style>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Reader Wall - BookNest</title>
+
+<link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
-    <nav class="navbar">
 
-<div class="logo">
-<i class="fa-solid fa-book-open"></i>
-<div>
-   <h2>BookNest</h2>
+<!-- ================= NAVBAR ================= -->
 
-<p>Smart Library Portal</p>
+<nav class="navbar">
 
-</div>
+    <div class="logo">
+        <div class="logo-title">📖 BookNest</div>
+        <div class="logo-subtitle">Smart Library Portal</div>
+    </div>
 
-</div> 
+    <div class="nav-links">
 
-<ul class="nav-links">
+        <a href="index.html">Home</a>
 
-<li><a href="index.html">Home</a></li>
+        <a href="shop.html">Shop</a>
 
-<li><a href="shop.html">Shop</a></li>
+        <a href="cart.html">Cart</a>
 
-<li><a href="cart.html">Cart</a></li>
+        <a href="wishlist.html">Wishlist</a>
 
-<li><a href="wishlist.html">Wishlist</a></li>
+        <a href="orders.html">Orders</a>
 
-<li><a href="orders.html">Orders</a></li>
+        <a href="readerWall.html" class="active">
+            Reader Wall
+        </a>
 
-<li><a href="readerWall.html">Reader Wall</a></li>
+        <a href="profile.html">Profile</a>
 
-<li><a href="profile.html">Profile</a></li>
+        <a href="#" onclick="logout()">Logout</a>
 
-<li><a href="#" onclick="logout()">Logout</a></li>
-
-</ul>
+    </div>
 
 </nav>
 
-<div class="page-container">
 
-<h1 class="page-title">
+<!-- ================= HERO ================= -->
 
-Reader Wall
+<section class="reader-hero">
 
-</h1>
+    <div class="hero-overlay">
 
-<p class="wall-text">
+        <div class="hero-icon">
+            👥
+        </div>
 
-Only verified buyers can share how a book inspired them.
+        <h1>Reader Wall</h1>
 
-</p>
+        <p>
+            Real readers. Real thoughts.
+            Be a part of the community.
+        </p>
 
-<div id="readerWallContainer">
+        <div class="hero-line"></div>
 
-</div>
+    </div>
 
-</div>
+</section>
+
+
+<!-- ================= CONTENT ================= -->
+
+<section class="reader-section">
+
+    <div class="reader-heading">
+
+        <h2>What Readers Are Saying</h2>
+
+        <p>
+            Discover experiences shared by verified BookNest readers.
+        </p>
+
+    </div>
+
+
+    <div id="readerWallContainer" class="reader-grid">
+
+        <div class="loading">
+            Loading reader experiences...
+        </div>
+
+    </div>
+
+</section>
+
 
 <script src="script.js"></script>
 
 <script>
-
 loadReaderWall();
-
 </script>
-  
+
 </body>
+
 </html>
