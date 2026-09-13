@@ -1336,6 +1336,11 @@ font-weight:600;
     font-weight:500;
 }
 
+.pending{
+    background:#f0ad4e;
+    color:white;
+}
+
 /* =========================================================
    READER WALL
    SAME FULL-PAGE BACKGROUND AS WISHLIST
