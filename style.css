@@ -1294,19 +1294,21 @@ font-weight:600;
 
 /* =========================================================
    READER WALL
-   FULL BOOK.JPG BACKGROUND
+   FULL PAGE TRANSPARENT - BOOK.JPG VISIBLE
    ========================================================= */
 
 
-/* ================= HERO ================= */
+/* ================= READER HERO ================= */
 
 .reader-hero {
     width: 100%;
-    height: 380px;
+    min-height: 360px;
 
-    background-image: url("book.jpg");
-    background-size: cover;
-    background-position: center;
+    /* IMPORTANT:
+       NO background image here.
+       The body book.jpg will show through.
+    */
+    background: transparent !important;
 
     position: relative;
 
@@ -1320,34 +1322,31 @@ font-weight:600;
 }
 
 
-/* DARK TRANSPARENT HERO OVERLAY */
+/* REMOVE ANY OVERLAY */
 
 .reader-hero::before {
-    content: "";
-    position: absolute;
-
-    inset: 0;
-
-    background: rgba(45, 28, 25, 0.55);
-
-    z-index: 1;
+    display: none !important;
+    content: none;
 }
 
 
-/* HERO CONTENT */
+/* ================= HERO CONTENT ================= */
 
 .hero-overlay {
     position: relative;
-
     z-index: 2;
 
     text-align: center;
 
     color: white;
 
-    padding: 20px;
+    padding: 30px;
+
+    background: transparent !important;
 }
 
+
+/* HERO TITLE */
 
 .hero-overlay h1 {
     font-size: 60px;
@@ -1359,9 +1358,11 @@ font-weight:600;
     font-weight: 700;
 
     text-shadow:
-        0 3px 8px rgba(0, 0, 0, 0.6);
+        0 3px 10px rgba(0, 0, 0, 0.8);
 }
 
+
+/* HERO DESCRIPTION */
 
 .hero-overlay p {
     font-size: 21px;
@@ -1371,9 +1372,11 @@ font-weight:600;
     color: white;
 
     text-shadow:
-        0 2px 6px rgba(0, 0, 0, 0.6);
+        0 2px 8px rgba(0, 0, 0, 0.8);
 }
 
+
+/* GOLD LINE */
 
 .hero-line {
     width: 120px;
@@ -1390,26 +1393,31 @@ font-weight:600;
 
 /* =========================================================
    MAIN READER SECTION
-   TRANSPARENT - NO WHITE BACKGROUND
+   COMPLETELY TRANSPARENT
    ========================================================= */
 
 .reader-section {
     width: 100%;
 
-    background: transparent !important;
-
     min-height: 500px;
 
-    padding: 55px 6% 80px;
+    padding: 40px 6% 80px;
+
+    background: transparent !important;
+
+    /* Make sure no other element creates a white layer */
+    border: none;
 }
 
 
-/* ================= HEADING ================= */
+/* ================= READER HEADING ================= */
 
 .reader-heading {
     text-align: center;
 
     margin-bottom: 45px;
+
+    background: transparent !important;
 }
 
 
@@ -1421,7 +1429,7 @@ font-weight:600;
     margin-bottom: 10px;
 
     text-shadow:
-        0 2px 6px rgba(0, 0, 0, 0.7);
+        0 2px 8px rgba(0, 0, 0, 0.8);
 }
 
 
@@ -1431,7 +1439,7 @@ font-weight:600;
     color: white;
 
     text-shadow:
-        0 2px 5px rgba(0, 0, 0, 0.7);
+        0 2px 6px rgba(0, 0, 0, 0.8);
 }
 
 
@@ -1452,18 +1460,23 @@ font-weight:600;
         repeat(auto-fit, minmax(350px, 1fr));
 
     gap: 30px;
+
+    background: transparent !important;
 }
 
 
 /* =========================================================
    READER CARD
-   DARK + TRANSPARENT
+   TRANSPARENT - NO WHITE
    ========================================================= */
 
 .reader-card {
     width: 100%;
 
-    background: rgba(45, 25, 25, 0.88) !important;
+    /* Transparent dark glass */
+    background: rgba(45, 25, 25, 0.45) !important;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
 
     border-radius: 20px;
 
@@ -1478,23 +1491,29 @@ font-weight:600;
     color: white;
 
     box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.35);
+        0 8px 25px rgba(0, 0, 0, 0.25);
 
     transition: 0.3s;
+
+    backdrop-filter: blur(3px);
 }
 
+
+/* CARD HOVER */
 
 .reader-card:hover {
     transform: translateY(-6px);
 
-    background: rgba(45, 25, 25, 0.94) !important;
+    background: rgba(45, 25, 25, 0.55) !important;
 
     box-shadow:
-        0 15px 35px rgba(0, 0, 0, 0.5);
+        0 12px 30px rgba(0, 0, 0, 0.4);
 }
 
 
-/* ================= CARD TOP ================= */
+/* =========================================================
+   CARD TOP
+   ========================================================= */
 
 .reader-top {
     display: flex;
@@ -1520,17 +1539,15 @@ font-weight:600;
 
 .reader-avatar {
     width: 48px;
-
     height: 48px;
 
     border-radius: 50%;
 
-    background: #ead7a5;
+    background: rgba(234, 215, 165, 0.85);
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     font-size: 22px;
@@ -1543,13 +1560,16 @@ font-weight:600;
     font-weight: bold;
 
     color: white;
+
+    text-shadow:
+        0 1px 4px rgba(0, 0, 0, 0.7);
 }
 
 
 .verified {
     font-size: 14px;
 
-    color: #ddd;
+    color: #eeeeee;
 
     margin-top: 4px;
 }
@@ -1567,6 +1587,8 @@ font-weight:600;
 .reader-date {
     background: rgba(255, 255, 255, 0.12);
 
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
     padding: 7px 11px;
 
     border-radius: 9px;
@@ -1577,7 +1599,9 @@ font-weight:600;
 }
 
 
-/* ================= BOOK ================= */
+/* =========================================================
+   BOOK INFORMATION
+   ========================================================= */
 
 .reader-book {
     display: flex;
@@ -1613,19 +1637,24 @@ font-weight:600;
     font-size: 19px;
 
     color: white;
+
+    text-shadow:
+        0 1px 4px rgba(0, 0, 0, 0.7);
 }
 
 
 .reader-book-info p {
     margin: 0;
 
-    color: #ddd;
+    color: #eeeeee;
 
     font-size: 15px;
 }
 
 
-/* ================= MESSAGE ================= */
+/* =========================================================
+   READER MESSAGE
+   ========================================================= */
 
 .reader-message {
     font-size: 16px;
@@ -1637,10 +1666,15 @@ font-weight:600;
     margin: 20px 0;
 
     flex: 1;
+
+    text-shadow:
+        0 1px 4px rgba(0, 0, 0, 0.7);
 }
 
 
-/* ================= BOTTOM ================= */
+/* =========================================================
+   CARD BOTTOM
+   ========================================================= */
 
 .reader-bottom {
     display: flex;
@@ -1656,7 +1690,7 @@ font-weight:600;
 /* ================= LIKES ================= */
 
 .likes {
-    color: #ddd;
+    color: #eeeeee;
 
     font-size: 15px;
 }
@@ -1674,7 +1708,9 @@ font-weight:600;
 /* ================= BOOK TAG ================= */
 
 .book-tag {
-    background: rgba(250, 242, 232, 0.15);
+    background: rgba(255, 255, 255, 0.12);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
 
     color: #ffd27a;
 
@@ -1686,7 +1722,9 @@ font-weight:600;
 }
 
 
-/* ================= LOADING ================= */
+/* =========================================================
+   LOADING
+   ========================================================= */
 
 .loading {
     grid-column: 1 / -1;
@@ -1698,10 +1736,14 @@ font-weight:600;
     font-size: 20px;
 
     color: white;
+
+    background: transparent !important;
 }
 
 
-/* ================= EMPTY ================= */
+/* =========================================================
+   EMPTY READER
+   ========================================================= */
 
 .empty-reader {
     grid-column: 1 / -1;
@@ -1710,7 +1752,9 @@ font-weight:600;
 
     padding: 70px;
 
-    background: rgba(45, 25, 25, 0.85) !important;
+    background: rgba(45, 25, 25, 0.45) !important;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
 
     border-radius: 18px;
 
@@ -1737,29 +1781,40 @@ font-weight:600;
         grid-template-columns: 1fr;
     }
 
+
     .reader-hero {
-        height: 330px;
+        min-height: 300px;
+
+        background: transparent !important;
     }
+
 
     .hero-overlay h1 {
         font-size: 42px;
     }
 
+
     .hero-overlay p {
         font-size: 17px;
     }
+
 
     .reader-section {
         padding: 40px 20px 60px;
     }
 
+
     .reader-card {
         min-height: 300px;
+
+        padding: 20px;
     }
+
 
     .reader-top {
         align-items: flex-start;
     }
+
 
     .reader-date {
         font-size: 12px;
