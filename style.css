@@ -1349,6 +1349,7 @@ font-weight:600;
 /* Full page background */
 .reader-wall-page {
     min-height: 100vh;
+	padding-top: 20px;
     background: url("book.jpg") center center / cover fixed no-repeat;
     position: relative;
 }
@@ -1372,7 +1373,39 @@ font-weight:600;
     background: rgba(255, 255, 255, 0.08);
     z-index: -1;
 }
+.reader-wall-hero{
+    text-align:center;
+    margin-top: 20px;
+}
 
+.reader-wall-hero h1{
+    margin: 0;
+    font-size: 64px;
+    color:#2d1919;
+}
+
+.reader-wall-hero p{
+    margin-top: 12px;
+    font-size: 24px;
+    color:white;
+}
+
+.reader-wall-section{
+    text-align:center;
+    margin-top: 55px;
+}
+
+.reader-wall-section h2{
+    margin:0;
+    font-size:42px;
+    color:white;
+}
+
+.reader-wall-section p{
+    margin-top:10px;
+    font-size:20px;
+    color:white;
+}
 
 /* =========================================================
    HERO
