@@ -11,43 +11,277 @@
 
 <link rel="stylesheet" href="style.css">
 
+<style>
+
+/* =========================================
+   READER WALL PAGE
+========================================= */
+
+.reader-wall-page{
+    margin:0;
+    padding:0;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.reader-hero{
+    width:100%;
+    min-height:260px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding-top:20px;
+
+    box-sizing:border-box;
+}
+
+.hero-overlay{
+    width:100%;
+    text-align:center;
+}
+
+.hero-icon{
+    display:none;
+}
+
+.reader-hero h1{
+    margin:0;
+
+    font-size:58px;
+    line-height:1.1;
+
+    color:#2d1919;
+}
+
+.reader-hero p{
+    margin:12px 0 0;
+
+    font-size:22px;
+    line-height:1.4;
+
+    color:white;
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.reader-section{
+    width:100%;
+
+    padding:20px 0 60px;
+
+    box-sizing:border-box;
+}
+
+.reader-heading{
+    text-align:center;
+
+    margin:0 auto 30px;
+
+    width:90%;
+}
+
+.reader-heading h2{
+    margin:0;
+
+    font-size:40px;
+
+    color:white;
+}
+
+.reader-heading p{
+    margin:10px 0 0;
+
+    font-size:19px;
+
+    color:white;
+}
+
+
+/* =========================================
+   READER CARDS
+========================================= */
+
+.reader-grid{
+    width:90%;
+    max-width:1250px;
+
+    margin:0 auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+    align-items:start;
+}
+
+.reader-grid .order-card,
+.reader-grid .reader-card{
+
+    width:auto;
+    min-height:220px;
+
+    margin:0;
+
+    padding:22px;
+
+    box-sizing:border-box;
+
+    background:rgba(45,25,25,0.94);
+
+    border-radius:20px;
+
+    text-align:center;
+
+    color:white;
+
+    box-shadow:0 8px 20px rgba(0,0,0,0.3);
+}
+
+.reader-grid h2,
+.reader-grid h4{
+
+    margin:0 0 15px;
+
+    color:white;
+
+    font-size:25px;
+}
+
+.reader-grid p{
+
+    margin:10px 0;
+
+    color:white;
+
+    font-size:17px;
+
+    line-height:1.4;
+}
+
+.reader-grid small{
+
+    display:block;
+
+    margin-top:15px;
+
+    color:white;
+
+    font-size:14px;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:900px){
+
+    .reader-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    .reader-hero{
+        min-height:220px;
+    }
+
+    .reader-hero h1{
+        font-size:42px;
+    }
+
+    .reader-hero p{
+        font-size:18px;
+    }
+
+    .reader-heading h2{
+        font-size:30px;
+    }
+
+    .reader-heading p{
+        font-size:17px;
+    }
+
+    .reader-grid{
+        width:90%;
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
 </head>
+
 
 <body class="reader-wall-page">
 
+
 <!-- ================= NAVBAR ================= -->
 
-        <nav class="navbar">
-        <div class="logo">
+<nav class="navbar">
+
+    <div class="logo">
+
         <div>
 
-        <h2>BookNest</h2>
+            <h2>BookNest</h2>
 
-        <p>Discover • Shop • Read</p>
-
-        </div>
+            <p>Discover • Shop • Read</p>
 
         </div>
+
+    </div>
+
 
     <div class="nav-links">
 
-        <a href="index.html">Home</a>
+        <a href="index.html">
+            Home
+        </a>
 
-        <a href="shop.html">Shop</a>
+        <a href="shop.html">
+            Shop
+        </a>
 
-        <a href="cart.html">Cart</a>
+        <a href="cart.html">
+            Cart
+        </a>
 
-        <a href="wishlist.html">Wishlist</a>
+        <a href="wishlist.html">
+            Wishlist
+        </a>
 
-        <a href="orders.html">Orders</a>
+        <a href="orders.html">
+            Orders
+        </a>
 
         <a href="readerWall.html" class="active">
             Reader Wall
         </a>
 
-        <a href="profile.html">Profile</a>
+        <a href="profile.html">
+            Profile
+        </a>
 
-        <a href="#" onclick="logout()">Logout</a>
+        <a href="#" onclick="logout()">
+            Logout
+        </a>
 
     </div>
 
@@ -56,22 +290,36 @@
 
 <!-- ================= HERO ================= -->
 
-<div class="reader-wall-page">
+<section class="reader-hero">
 
-    <div class="reader-wall-hero">
+    <div class="hero-overlay">
 
-        <h1>Reader Wall</h1>
+        <div class="hero-icon">
+        </div>
+
+        <h1>
+            Reader Wall
+        </h1>
 
         <p>
-            Real readers. Real thoughts. Be a part of the community.
+            Real readers. Real thoughts.
+            Be a part of the community.
         </p>
 
     </div>
 
+</section>
 
-    <div class="reader-wall-section">
 
-        <h2>What Readers Are Saying</h2>
+<!-- ================= CONTENT ================= -->
+
+<section class="reader-section">
+
+    <div class="reader-heading">
+
+        <h2>
+            What Readers Are Saying
+        </h2>
 
         <p>
             Discover experiences shared by verified BookNest readers.
@@ -79,17 +327,28 @@
 
     </div>
 
-    <div id="readerWallContainer" class="reader-wall-container">
+
+    <div id="readerWallContainer" class="reader-grid">
+
+        <div class="loading">
+            Loading reader experiences...
+        </div>
+
     </div>
 
-</div>
+</section>
 
+
+<!-- ================= JAVASCRIPT ================= -->
 
 <script src="script.js"></script>
 
 <script>
+
 loadReaderWall();
+
 </script>
+
 
 </body>
 
