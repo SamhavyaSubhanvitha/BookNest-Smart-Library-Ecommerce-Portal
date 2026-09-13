@@ -1291,14 +1291,26 @@ color:#8a6038;
 font-weight:600;
 
 }
-/* READER WALL 
+
+/* READER WALL - FULL BACKGROUND IMAGE / TRANSPARENT PAGE */
+
+/* Keep the library image visible on the whole page */
+body {
+    background-image: url(book.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+
 /* ================= READER HERO ================= */
 
 .reader-hero {
     width: 100%;
     height: 380px;
 
-    background-image: url("./images/library-bg.jpg");
+    background-image: url(book.jpg);
     background-size: cover;
     background-position: center;
 
@@ -1311,14 +1323,18 @@ font-weight:600;
     margin-top: 10px;
 }
 
+
+/* Dark transparent overlay only over hero */
 .reader-hero::before {
     content: "";
     position: absolute;
     inset: 0;
 
-    background: rgba(45, 28, 25, 0.65);
-    backdrop-filter: blur(2px);
+    background: rgba(45, 28, 25, 0.55);
+
+    z-index: 1;
 }
+
 
 .hero-overlay {
     position: relative;
@@ -1326,23 +1342,24 @@ font-weight:600;
 
     text-align: center;
     color: white;
-
     padding: 20px;
 }
+
 
 .hero-overlay h1 {
     font-size: 60px;
     margin: 0;
-
+    color: white;
     font-weight: 700;
 }
+
 
 .hero-overlay p {
     font-size: 21px;
     margin-top: 15px;
-
     color: white;
 }
+
 
 .hero-line {
     width: 120px;
@@ -1356,14 +1373,16 @@ font-weight:600;
 }
 
 
-/* ================= MAIN READER SECTION ================= */
+/* MAIN READER SECTION */
 
 .reader-section {
-    background: transparent;
+    width: 100%;
+
+    background: transparent !important;
 
     min-height: 500px;
 
-    padding: 45px 6% 70px;
+    padding: 55px 6% 80px;
 }
 
 
@@ -1371,29 +1390,31 @@ font-weight:600;
 
 .reader-heading {
     text-align: center;
-
-    margin-bottom: 50px;
+    margin-bottom: 45px;
 }
+
 
 .reader-heading h2 {
-    font-size: 32px;
-
+    font-size: 34px;
     color: white;
 
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+
+    text-shadow: 0 2px 5px rgba(0,0,0,0.6);
 }
+
 
 .reader-heading p {
     font-size: 17px;
+    color: white;
 
-    color: #f0f0f0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.6);
 }
 
 
 /* ================= READER GRID ================= */
 
 .reader-grid {
-
     width: 100%;
     max-width: 1250px;
 
@@ -1411,41 +1432,40 @@ font-weight:600;
 /* ================= READER CARD ================= */
 
 .reader-card {
+    background: rgba(45, 25, 25, 0.88) !important;
 
-    background: transparent;
-
-    border-radius: 18px;
+    border-radius: 20px;
 
     padding: 25px;
-
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.30);
 
     min-height: 330px;
 
     display: flex;
-
     flex-direction: column;
+
+    color: white;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.35);
 
     transition: 0.25s;
 }
 
-.reader-card:hover {
 
+.reader-card:hover {
     transform: translateY(-5px);
 
     box-shadow:
-        0 14px 32px rgba(0, 0, 0, 0.15);
+        0 15px 35px rgba(0,0,0,0.45);
 }
 
 
 /* ================= CARD TOP ================= */
 
 .reader-top {
-
     display: flex;
 
     align-items: center;
-
     justify-content: space-between;
 
     margin-bottom: 20px;
@@ -1453,7 +1473,6 @@ font-weight:600;
 
 
 .reader-user {
-
     display: flex;
 
     align-items: center;
@@ -1463,7 +1482,6 @@ font-weight:600;
 
 
 .reader-avatar {
-
     width: 48px;
     height: 48px;
 
@@ -1472,7 +1490,6 @@ font-weight:600;
     background: #ead7a5;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
@@ -1481,28 +1498,25 @@ font-weight:600;
 
 
 .reader-name {
-
     font-size: 17px;
 
     font-weight: bold;
 
-    color: #292929;
+    color: white;
 }
 
 
 .verified {
-
     font-size: 14px;
 
-    color: #777;
+    color: #ddd;
 
     margin-top: 4px;
 }
 
 
 .verified span {
-
-    color: #16b891;
+    color: #42e0b5;
 
     font-weight: bold;
 }
@@ -1511,8 +1525,7 @@ font-weight:600;
 /* ================= DATE ================= */
 
 .reader-date {
-
-    background: #f3f5f7;
+    background: rgba(255,255,255,0.12);
 
     padding: 7px 11px;
 
@@ -1520,14 +1533,13 @@ font-weight:600;
 
     font-size: 13px;
 
-    color: #777;
+    color: white;
 }
 
 
 /* ================= BOOK ================= */
 
 .reader-book {
-
     display: flex;
 
     align-items: center;
@@ -1536,12 +1548,12 @@ font-weight:600;
 
     padding-bottom: 18px;
 
-    border-bottom: 1px solid #eee;
+    border-bottom:
+        1px solid rgba(255,255,255,0.2);
 }
 
 
 .reader-book-image {
-
     width: 60px;
     height: 82px;
 
@@ -1550,25 +1562,23 @@ font-weight:600;
     border-radius: 6px;
 
     box-shadow:
-        0 3px 8px rgba(0, 0, 0, 0.18);
+        0 3px 8px rgba(0,0,0,0.4);
 }
 
 
 .reader-book-info h3 {
-
     margin: 0 0 7px;
 
     font-size: 19px;
 
-    color: #302525;
+    color: white;
 }
 
 
 .reader-book-info p {
-
     margin: 0;
 
-    color: #89909a;
+    color: #ddd;
 
     font-size: 15px;
 }
@@ -1577,12 +1587,11 @@ font-weight:600;
 /* ================= MESSAGE ================= */
 
 .reader-message {
-
     font-size: 16px;
 
     line-height: 1.7;
 
-    color: #3f454d;
+    color: white;
 
     margin: 20px 0;
 
@@ -1593,7 +1602,6 @@ font-weight:600;
 /* ================= CARD BOTTOM ================= */
 
 .reader-bottom {
-
     display: flex;
 
     justify-content: space-between;
@@ -1607,16 +1615,14 @@ font-weight:600;
 /* ================= LIKES ================= */
 
 .likes {
-
-    color: #718096;
+    color: #ddd;
 
     font-size: 15px;
 }
 
 
 .likes span {
-
-    color: #ed4b5c;
+    color: #ff5364;
 
     font-size: 21px;
 
@@ -1627,10 +1633,9 @@ font-weight:600;
 /* ================= BOOK TAG ================= */
 
 .book-tag {
+    background: rgba(250,242,232,0.15);
 
-    background: #faf2e8;
-
-    color: #9a693e;
+    color: #ffd27a;
 
     padding: 8px 13px;
 
@@ -1643,7 +1648,6 @@ font-weight:600;
 /* ================= LOADING ================= */
 
 .loading {
-
     grid-column: 1 / -1;
 
     text-align: center;
@@ -1652,36 +1656,52 @@ font-weight:600;
 
     font-size: 20px;
 
-    color: #777;
+    color: white;
 }
 
 
 /* ================= EMPTY ================= */
 
 .empty-reader {
-
     grid-column: 1 / -1;
-
-    text-align: center;
 
     padding: 70px;
 
-    background: white;
+    background: rgba(45,25,25,0.85) !important;
 
     border-radius: 18px;
 
-    color: #777;
+    color: white;
+
+    text-align: center;
 }
 
 
-/* ================= MOBILE ================= */
+/* =========================================================
+   REMOVE OLD WHITE READER WALL STYLES
+   ========================================================= */
+
+.reader-section,
+.reader-card,
+.empty-reader {
+    background-color: transparent;
+}
+
+
+/* Keep cards dark, not transparent */
+.reader-grid .reader-card {
+    background: rgba(45,25,25,0.88) !important;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media (max-width: 900px) {
 
     .reader-grid {
-
         grid-template-columns: 1fr 1fr;
-
     }
 
 }
@@ -1690,71 +1710,35 @@ font-weight:600;
 @media (max-width: 650px) {
 
     .reader-grid {
-
         grid-template-columns: 1fr;
-
     }
 
     .reader-hero {
-
-        width:100%;
-    	height:330px;
-    	background: rgba(45,28,25,0.55);
-    	position:relative;
-    	display:flex;
-    	align-items:center;
-    	justify-content:center;
-    	margin-top:10px;;
+        height: 330px;
     }
 
-	.reader-hero::before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background:rgba(45,28,25,0.35);
-
-    backdrop-filter:blur(3px);
-
-}
-
     .hero-overlay h1 {
-
         font-size: 42px;
-
     }
 
     .hero-overlay p {
-
         font-size: 17px;
-
     }
 
     .reader-section {
-
         padding: 40px 20px 60px;
-
     }
 
     .reader-card {
-
         min-height: 300px;
-
     }
 
     .reader-top {
-
         align-items: flex-start;
-
     }
 
     .reader-date {
-
         font-size: 12px;
-
     }
 
 }
