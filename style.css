@@ -1292,13 +1292,47 @@ font-weight:600;
 
 }
 
-/* READER WALL*/
+/* =========================================================
+   READER WALL
+   SAME FULL-PAGE BACKGROUND AS WISHLIST
+   ========================================================= */
 
-/* ================= READER HERO ================= */
+/* Full page background */
+.reader-wall-page {
+    min-height: 100vh;
+    background: url("book.jpg") center center / cover fixed no-repeat;
+    position: relative;
+}
+
+/* Blur + dark transparent effect over the background */
+.reader-wall-page::before {
+    content: "";
+    position: fixed;
+    inset: -20px;
+    background: url("book.jpg") center center / cover no-repeat;
+    filter: blur(5px);
+    transform: scale(1.03);
+    z-index: -2;
+}
+
+/* Transparent page layer */
+.reader-wall-page::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.08);
+    z-index: -1;
+}
+
+
+/* =========================================================
+   HERO
+   NO SEPARATE BACKGROUND
+   ========================================================= */
 
 .reader-hero {
     width: 100%;
-    height: 380px;
+    height: 430px;
 
     background: transparent !important;
 
@@ -1308,17 +1342,20 @@ font-weight:600;
     align-items: center;
     justify-content: center;
 
-    margin-top: 10px;
+    margin-top: 0;
+
     overflow: hidden;
 }
 
-/* NO DARK IMAGE OVERLAY */
+
+/* REMOVE HERO BACKGROUND OVERLAY */
+
 .reader-hero::before {
     display: none !important;
 }
 
 
-/* ================= HERO CONTENT ================= */
+/* HERO CONTENT */
 
 .hero-overlay {
     position: relative;
@@ -1330,8 +1367,10 @@ font-weight:600;
     padding: 20px;
 }
 
+
 .hero-overlay h1 {
     font-size: 60px;
+
     margin: 0;
 
     color: white;
@@ -1341,6 +1380,7 @@ font-weight:600;
     text-shadow:
         0 3px 8px rgba(0, 0, 0, 0.7);
 }
+
 
 .hero-overlay p {
     font-size: 21px;
@@ -1353,8 +1393,10 @@ font-weight:600;
         0 2px 6px rgba(0, 0, 0, 0.7);
 }
 
+
 .hero-line {
     width: 120px;
+
     height: 4px;
 
     background: #e8b84d;
@@ -1367,7 +1409,7 @@ font-weight:600;
 
 /* =========================================================
    MAIN READER SECTION
-   COMPLETELY TRANSPARENT
+   FULLY TRANSPARENT
    ========================================================= */
 
 .reader-section {
@@ -1377,21 +1419,20 @@ font-weight:600;
 
     min-height: 500px;
 
-    padding: 45px 6% 80px;
-
-    margin: 0;
+    padding: 0 6% 80px;
 }
 
 
-/* ================= HEADING ================= */
+/* =========================================================
+   HEADING
+   ========================================================= */
 
 .reader-heading {
     text-align: center;
 
     margin-bottom: 45px;
-
-    background: transparent !important;
 }
+
 
 .reader-heading h2 {
     font-size: 34px;
@@ -1403,6 +1444,7 @@ font-weight:600;
     text-shadow:
         0 2px 6px rgba(0, 0, 0, 0.8);
 }
+
 
 .reader-heading p {
     font-size: 17px;
@@ -1431,21 +1473,18 @@ font-weight:600;
         repeat(auto-fit, minmax(350px, 1fr));
 
     gap: 30px;
-
-    background: transparent !important;
 }
 
 
-/* READER CARD
-   TRANSPARENT*/
+/* =========================================================
+   READER CARD
+   DARK TRANSPARENT
+   ========================================================= */
 
 .reader-card {
     width: 100%;
 
-    /* IMPORTANT: FULL TRANSPARENT */
-    background: transparent !important;
-
-    border: none !important;
+    background: rgba(45, 25, 25, 0.78) !important;
 
     border-radius: 20px;
 
@@ -1459,25 +1498,26 @@ font-weight:600;
 
     color: white;
 
-    /* Keep only a subtle shadow */
     box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.25);
+        0 10px 30px rgba(0, 0, 0, 0.35);
 
     transition: 0.3s;
 }
 
+
 .reader-card:hover {
     transform: translateY(-6px);
 
-    /* STILL TRANSPARENT */
-    background: transparent !important;
+    background: rgba(45, 25, 25, 0.88) !important;
 
     box-shadow:
-        0 12px 30px rgba(0, 0, 0, 0.35);
+        0 15px 35px rgba(0, 0, 0, 0.5);
 }
 
 
-/* ================= CARD TOP ================= */
+/* =========================================================
+   CARD TOP
+   ========================================================= */
 
 .reader-top {
     display: flex;
@@ -1487,9 +1527,8 @@ font-weight:600;
     justify-content: space-between;
 
     margin-bottom: 20px;
-
-    background: transparent !important;
 }
+
 
 .reader-user {
     display: flex;
@@ -1497,31 +1536,29 @@ font-weight:600;
     align-items: center;
 
     gap: 12px;
-
-    background: transparent !important;
 }
 
 
-/* ================= AVATAR ================= */
+/* AVATAR */
 
 .reader-avatar {
     width: 48px;
+
     height: 48px;
 
     border-radius: 50%;
 
-    background: rgba(234, 215, 165, 0.85);
+    background: #ead7a5;
 
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     font-size: 22px;
 }
 
-
-/* ================= USER NAME ================= */
 
 .reader-name {
     font-size: 17px;
@@ -1529,21 +1566,17 @@ font-weight:600;
     font-weight: bold;
 
     color: white;
-
-    text-shadow:
-        0 2px 5px rgba(0, 0, 0, 0.8);
 }
+
 
 .verified {
     font-size: 14px;
 
-    color: white;
+    color: #ddd;
 
     margin-top: 4px;
-
-    text-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.8);
 }
+
 
 .verified span {
     color: #42e0b5;
@@ -1552,10 +1585,10 @@ font-weight:600;
 }
 
 
-/* ================= DATE ================= */
+/* DATE */
 
 .reader-date {
-    background: rgba(50, 36, 34, 0.55);
+    background: rgba(255, 255, 255, 0.12);
 
     padding: 7px 11px;
 
@@ -1564,12 +1597,12 @@ font-weight:600;
     font-size: 13px;
 
     color: white;
-
-    backdrop-filter: blur(3px);
 }
 
 
-/* ================= BOOK ================= */
+/* =========================================================
+   BOOK
+   ========================================================= */
 
 .reader-book {
     display: flex;
@@ -1580,14 +1613,14 @@ font-weight:600;
 
     padding-bottom: 18px;
 
-    background: transparent !important;
-
     border-bottom:
-        1px solid rgba(255, 255, 255, 0.35);
+        1px solid rgba(255, 255, 255, 0.2);
 }
+
 
 .reader-book-image {
     width: 60px;
+
     height: 82px;
 
     object-fit: cover;
@@ -1599,36 +1632,27 @@ font-weight:600;
 }
 
 
-/* ================= BOOK INFO ================= */
-
-.reader-book-info {
-    background: transparent !important;
-}
-
 .reader-book-info h3 {
     margin: 0 0 7px;
 
     font-size: 19px;
 
     color: white;
-
-    text-shadow:
-        0 2px 5px rgba(0, 0, 0, 0.8);
 }
+
 
 .reader-book-info p {
     margin: 0;
 
-    color: white;
+    color: #ddd;
 
     font-size: 15px;
-
-    text-shadow:
-        0 2px 5px rgba(0, 0, 0, 0.8);
 }
 
 
-/* ================= MESSAGE ================= */
+/* =========================================================
+   MESSAGE
+   ========================================================= */
 
 .reader-message {
     font-size: 16px;
@@ -1640,15 +1664,12 @@ font-weight:600;
     margin: 20px 0;
 
     flex: 1;
-
-    background: transparent !important;
-
-    text-shadow:
-        0 2px 5px rgba(0, 0, 0, 0.8);
 }
 
 
-/* ================= BOTTOM ================= */
+/* =========================================================
+   BOTTOM
+   ========================================================= */
 
 .reader-bottom {
     display: flex;
@@ -1658,21 +1679,17 @@ font-weight:600;
     align-items: center;
 
     margin-top: auto;
-
-    background: transparent !important;
 }
 
 
-/* ================= LIKES ================= */
+/* LIKES */
 
 .likes {
-    color: white;
+    color: #ddd;
 
     font-size: 15px;
-
-    text-shadow:
-        0 2px 5px rgba(0, 0, 0, 0.8);
 }
+
 
 .likes span {
     color: #ff5364;
@@ -1683,10 +1700,10 @@ font-weight:600;
 }
 
 
-/* ================= BOOK TAG ================= */
+/* BOOK TAG */
 
 .book-tag {
-    background: rgba(50, 36, 34, 0.55);
+    background: rgba(250, 242, 232, 0.15);
 
     color: #ffd27a;
 
@@ -1695,12 +1712,12 @@ font-weight:600;
     border-radius: 10px;
 
     font-size: 13px;
-
-    backdrop-filter: blur(3px);
 }
 
 
-/* ================= LOADING ================= */
+/* =========================================================
+   LOADING
+   ========================================================= */
 
 .loading {
     grid-column: 1 / -1;
@@ -1712,15 +1729,12 @@ font-weight:600;
     font-size: 20px;
 
     color: white;
-
-    background: transparent !important;
-
-    text-shadow:
-        0 2px 5px rgba(0, 0, 0, 0.8);
 }
 
 
-/* ================= EMPTY ================= */
+/* =========================================================
+   EMPTY
+   ========================================================= */
 
 .empty-reader {
     grid-column: 1 / -1;
@@ -1729,15 +1743,11 @@ font-weight:600;
 
     padding: 70px;
 
-    /* NO WHITE BACKGROUND */
-    background: transparent !important;
+    background: rgba(45, 25, 25, 0.75) !important;
 
     border-radius: 18px;
 
     color: white;
-
-    text-shadow:
-        0 2px 5px rgba(0, 0, 0, 0.8);
 }
 
 
@@ -1762,8 +1772,6 @@ font-weight:600;
 
     .reader-hero {
         height: 330px;
-
-        background: transparent !important;
     }
 
     .hero-overlay h1 {
@@ -1775,15 +1783,11 @@ font-weight:600;
     }
 
     .reader-section {
-        padding: 40px 20px 60px;
-
-        background: transparent !important;
+        padding: 0 20px 60px;
     }
 
     .reader-card {
         min-height: 300px;
-
-        background: transparent !important;
     }
 
     .reader-top {
@@ -1795,6 +1799,5 @@ font-weight:600;
     }
 
 }
-
 
 }
