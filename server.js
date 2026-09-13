@@ -1295,6 +1295,29 @@ res.status(500).send(err);
 
 //================ GET READER WALL ==================
 
+//================ GET ALL READER WALL POSTS ==================
+
+app.get("/readerWall", async(req,res)=>{
+
+try{
+
+const data = await ReaderWall.find()
+.sort({createdAt:-1});
+
+res.send(data);
+
+}
+
+catch(err){
+
+console.log(err);
+
+res.status(500).send(err);
+
+}
+
+});
+
 app.get("/readerWall/:bookTitle", async(req,res)=>{
 
 try{
