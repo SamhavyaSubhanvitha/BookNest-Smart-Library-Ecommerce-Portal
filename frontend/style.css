@@ -97,11 +97,11 @@ body {
   color : #322422;
   text-decoration : none;
 }
-  .dropdown-menu li a : hover {
-  background : #f5f5f5;
+  .dropdown-menu li a:hover {
+  background: #f5f5f5;
 }
-  .dropdown : hover .dropdown-menu {
-  display : block;
+  .dropdown:hover .dropdown-menu {
+  display: block;
 }
 .hero {
   width : 90%;
