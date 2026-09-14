@@ -25,7 +25,6 @@ console.log(err);
 
 });
 
-
 //================ USERS ==================
 const userSchema = new mongoose.Schema({
 
@@ -40,7 +39,6 @@ timestamps:true
 });
 
 const User = mongoose.model("User",userSchema);
-
 
 //================ BOOKS ==================
 
@@ -69,7 +67,6 @@ rating:Number
 });
 
 const Book = mongoose.model("Book",bookSchema);
-
 
 //================ CART ==================
 
@@ -162,7 +159,6 @@ timestamps:true
 });
 
 const Otp = mongoose.model("Otp",otpSchema);
-
 
 //================ PAYMENT ==================
 
@@ -385,7 +381,6 @@ res.status(500).send(error);
 
 });
 
-
 //================ SIGNIN ==================
 
 app.post("/signin",async(req,res)=>{
@@ -468,7 +463,6 @@ res.send("Book unavailable");
 
 });
 
-
 //================ RETURN ==================
 
 app.post("/return",async(req,res)=>{
@@ -494,7 +488,6 @@ await book.save();
 res.send("Book returned");
 
 });
-
 
 //================ DELETE ==================
 
@@ -523,7 +516,6 @@ title:req.body.title
 res.send("Book deleted");
 
 });
-
 
 //================ CART ==================
 
@@ -562,7 +554,6 @@ res.status(500).send(error);
 }
 
 });
-
 
 //================ WISHLIST ==================
 
