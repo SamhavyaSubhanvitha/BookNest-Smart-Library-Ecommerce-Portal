@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="../frontend/style.css">
+    <style>
+        body{
+        backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+
+        <div class="logo">
+            <i class="fa-solid fa-book-open"></i>
+            <div>
+                <h2>BookNest</h2>
+
+                <p>Discover • Shop • Read</p>
+
+            </div>
+
+        </div>
+
+        <ul class="nav-links">
+
+            <li><a href="../frontend/index.html">Home</a></li>
+
+            <li><a href="../frontend/shop.html">Shop</a></li>
+
+            <li><a href="../frontend/cart.html">Cart</a></li>
+
+            <li><a href="../frontend/wishlist.html">Wishlist</a></li>
+
+            <li><a href="../frontend/orders.html">Orders</a></li>
+
+            <li><a href="../frontend/profile.html">Profile</a></li>
+
+            <li><a href="../frontend/signin.html">Logout</a></li>
+
+        </ul>
+
+    </nav>
+    <div class="page-container">
+
+        <h1 class="page-title">Payment</h1>
+
+        <div class="payment-box">
+
+            <input type="text" placeholder="Card Holder Name">
+
+            <input type="text" placeholder="Card Number">
+
+            <input type="text" placeholder="MM/YY">
+
+            <input type="text" placeholder="CVV">
+
+            <h2>Total Amount</h2>
+
+            <h1 id="amountDisplay">₹0</h1>
+
+            <button onclick="payment()">Pay Now</button>
+
+        </div>
+
+    </div>
+
+</body>
+<script src="../frontend/script.js"></script>
+<script>
+    loadPaymentAmount();
+</script>
+
+</html>
