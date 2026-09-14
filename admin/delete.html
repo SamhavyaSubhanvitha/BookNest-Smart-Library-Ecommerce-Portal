@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Book</title>
+    <link rel="stylesheet" href="../frontend/style.css">
+    <style>
+        body{
+        backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+
+        <div class="logo">
+            <i class="fa-solid fa-book-open"></i>
+            <div>
+                <h2>BookNest</h2>
+
+                <p>Smart Library Portal</p>
+
+            </div>
+
+        </div>
+
+        <ul class="nav-links">
+
+            <li><a href="../frontend/index.html">Home</a></li>
+
+            <li><a href="../frontend/shop.html">Shop</a></li>
+
+            <li class="dropdown">
+
+                <span class="library-btn">
+
+                Library ▾
+
+                </span>
+
+                <ul class="dropdown-menu">
+
+                    <li><a href="../frontend/taken.html">Borrow Book</a></li>
+
+                    <li><a href="../frontend/return.html">Return Book</a></li>
+
+                    <li><a href="../frontend/delete.html">Delete Book</a></li>
+
+                </ul>
+
+            </li>
+
+            <li><a href="../frontend/cart.html">Cart</a></li>
+
+            <li><a href="../frontend/wishlist.html">Wishlist</a></li>
+
+            <li><a href="../frontend/orders.html">Orders</a></li>
+
+            <li class="dropdown">
+
+                <a href="#">Library ▾</a>
+
+                <ul class="dropdown-menu">
+
+                    <li><a href="../frontend/addBook.html">Add Book</a></li>
+
+                    <li><a href="../frontend/taken.html">Borrow Book</a></li>
+
+                    <li><a href="../frontend/return.html">Return Book</a></li>
+
+                    <li><a href="../frontend/delete.html">Delete Book</a></li>
+
+                </ul>
+
+            </li>
+
+            <li><a href="../frontend/profile.html">Profile</a></li>
+
+            <li><a href="../frontend/signin.html">Logout</a></li>
+
+        </ul>
+
+    </nav>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="form-card">
+                <h1 class="page-title">Delete Book</h1>
+
+                <div class="payment-box">
+                    <input type="text" placeholder="Title" id="title">
+
+                    <button onclick="deleteBook()">Delete Book</button>
+
+                </div>
+                <script src="../frontend/script.js"></script>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
